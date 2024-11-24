@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/home_page">
+	<file>media/home_icon.png</file>
+	<file>media/startButton.png</file>
+	<file>media/darkThemeOn_icon.png</file>
+	<file>media/darkThemeOff_icon.png</file>
+	<file>media/home_icon.png</file>
+	<file>media/mp3_icon.png</file>
+	<file>media/mp4_icon.png</file>
+	<file>media/bluetooth_icon.png</file>
+	<file>media/settings_icon.png</file>
+	<file>media/music_icon.png</file>
+	<file>media/video_icon.png</file>
+	<file>media/calls_icon.png</file>	
+    </qresource>
+</RCC>
