@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/carDiagnostics">
+	<file>media/carPicture.jpg</file>
+    </qresource>
+</RCC>

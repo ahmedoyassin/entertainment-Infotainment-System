@@ -12,5 +12,6 @@
 	<file>media/music_icon.png</file>
 	<file>media/video_icon.png</file>
 	<file>media/calls_icon.png</file>	
+	<file>media/carDiagnostics.png</file>
     </qresource>
 </RCC>

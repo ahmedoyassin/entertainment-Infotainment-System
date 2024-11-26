@@ -120,6 +120,22 @@ Entertainmentscreen::Entertainmentscreen(QWidget *parent)
     // musicPlayer->play();
 
     connect(ui->homeButtonmp3, SIGNAL(clicked()), SLOT(navigateToHome()));
+
+    /***************************************************************************/
+    /************************* Video Pages Buttons ****************************/
+    /*************************************************************************/
+
+
+
+    /***************************************************************************/
+    /*********************** Diagnostics Pages Buttons ************************/
+    /*************************************************************************/
+    ui->carDiagnosticsButton->setIcon(QIcon(":/home_page/media/carDiagnostics.png"));
+    ui->carDiagnosticsButton->setIconSize(QSize(100,100));
+    connect(ui->carDiagnosticsButton, SIGNAL(clicked(bool)), SLOT(showCarScreen()));
+    ui->backTierIssue->hide();
+    connect(ui->checkBox, SIGNAL(clicked(bool)), SLOT(showTireDiagnostics()));
+
 }
 
 Entertainmentscreen::~Entertainmentscreen(){   delete ui;  }

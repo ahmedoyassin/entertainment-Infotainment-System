@@ -1,5 +1,8 @@
 #include "entertainmentscreen.hpp"
 
+
+int playingSongFlag = 0;
+
 /*****************************************************************************************************************************/
 /*************************************************    MP3    ****************************************************************/
 /***************************************************************************************************************************/
@@ -12,7 +15,20 @@ void Entertainmentscreen:: handleMusicButtonPress(){
     ui->homeButtonmp3->setIconSize(QSize(100,50));
 }
 void Entertainmentscreen:: handleSongListSelection(){
+    // int currentSongsNumber, start,end;
+    // std::string songsListCount, songsList, songPath,songName;
+    // currentSongsNumber = ui->runningSongsList->count();
+    // if(songsListCount == '0'){
+    //     ui->runningSongsList->hide();
+    // //
+    // }
+    // else{
+    //     ui->runningSongsList->show();
+    //     start = 0;
+    //     while(start < songsList.length()){
 
+    //     }
+    // }
 }
 void Entertainmentscreen:: onSongUpdate(){
 
@@ -34,7 +50,6 @@ void Entertainmentscreen:: handleVolumeSlider(){
         ui->musicVolume->setIcon(QIcon(":/mp3/media/volume_off-24px.svg"));
 }
 void Entertainmentscreen:: handlePlayButtonPress(){
-    static int playingSongFlag = 0;
     if(playingSongFlag ==0){
         musicPlayer->play();
         playingSongFlag = 1;

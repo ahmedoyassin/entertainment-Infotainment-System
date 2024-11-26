@@ -25,7 +25,8 @@ SOURCES += \
     mp4.cpp \
     calculator.cpp \
     bluetooth.cpp \
-    settings.cpp
+    settings.cpp \
+    carDiagnostics.cpp
 
 HEADERS += \
     entertainmentscreen.hpp \
@@ -41,7 +42,8 @@ RESOURCES += \
     mp3.qrc \
     mp4.qrc \
     bluetooth.qrc \
-    setting.qrc
+    setting.qrc \
+    carDiagnostics.qrc
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

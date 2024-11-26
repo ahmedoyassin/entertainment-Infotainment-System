@@ -59,11 +59,13 @@ SOURCES       = ../../main.cpp \
 		../../mp4.cpp \
 		../../calculator.cpp \
 		../../bluetooth.cpp \
-		../../settings.cpp qrc_backgrounds.cpp \
+		../../settings.cpp \
+		../../carDiagnostics.cpp qrc_backgrounds.cpp \
 		qrc_home_page.cpp \
 		qrc_mp3.cpp \
 		qrc_mp4.cpp \
 		qrc_bluetooth.cpp \
+		qrc_carDiagnostics.cpp \
 		moc_entertainmentscreen.cpp
 OBJECTS       = main.o \
 		entertainmentscreen.o \
@@ -73,11 +75,13 @@ OBJECTS       = main.o \
 		calculator.o \
 		bluetooth.o \
 		settings.o \
+		carDiagnostics.o \
 		qrc_backgrounds.o \
 		qrc_home_page.o \
 		qrc_mp3.o \
 		qrc_mp4.o \
 		qrc_bluetooth.o \
+		qrc_carDiagnostics.o \
 		moc_entertainmentscreen.o
 DIST          = /home/yasso/Qt/6.7.2/gcc_64/mkspecs/features/spec_pre.prf \
 		/home/yasso/Qt/6.7.2/gcc_64/mkspecs/common/unix.conf \
@@ -444,7 +448,8 @@ DIST          = /home/yasso/Qt/6.7.2/gcc_64/mkspecs/features/spec_pre.prf \
 		../../mp4.cpp \
 		../../calculator.cpp \
 		../../bluetooth.cpp \
-		../../settings.cpp
+		../../settings.cpp \
+		../../carDiagnostics.cpp
 QMAKE_TARGET  = infotainmentQt-draft2
 DESTDIR       = 
 TARGET        = infotainmentQt-draft2
@@ -818,6 +823,7 @@ Makefile: ../../InfotainmentQt-draft2.pro /home/yasso/Qt/6.7.2/gcc_64/mkspecs/li
 		../../mp3.qrc \
 		../../mp4.qrc \
 		../../bluetooth.qrc \
+		../../carDiagnostics.qrc \
 		/home/yasso/Qt/6.7.2/gcc_64/lib/libQt6MultimediaWidgets.prl \
 		/home/yasso/Qt/6.7.2/gcc_64/lib/libQt6Multimedia.prl \
 		/home/yasso/Qt/6.7.2/gcc_64/lib/libQt6Widgets.prl \
@@ -1187,6 +1193,7 @@ Makefile: ../../InfotainmentQt-draft2.pro /home/yasso/Qt/6.7.2/gcc_64/mkspecs/li
 ../../mp3.qrc:
 ../../mp4.qrc:
 ../../bluetooth.qrc:
+../../carDiagnostics.qrc:
 /home/yasso/Qt/6.7.2/gcc_64/lib/libQt6MultimediaWidgets.prl:
 /home/yasso/Qt/6.7.2/gcc_64/lib/libQt6Multimedia.prl:
 /home/yasso/Qt/6.7.2/gcc_64/lib/libQt6Widgets.prl:
@@ -1207,10 +1214,10 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../../backgrounds.qrc ../../home_page.qrc ../../mp3.qrc ../../mp4.qrc ../../bluetooth.qrc $(DISTDIR)/
+	$(COPY_FILE) --parents ../../backgrounds.qrc ../../home_page.qrc ../../mp3.qrc ../../mp4.qrc ../../bluetooth.qrc ../../carDiagnostics.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /home/yasso/Qt/6.7.2/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../../entertainmentscreen.hpp ../../systeminterface.hpp ../../targets.hpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../../main.cpp ../../entertainmentscreen.cpp ../../systeminterface.cpp ../../mp3.cpp ../../mp4.cpp ../../calculator.cpp ../../bluetooth.cpp ../../settings.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../../main.cpp ../../entertainmentscreen.cpp ../../systeminterface.cpp ../../mp3.cpp ../../mp4.cpp ../../calculator.cpp ../../bluetooth.cpp ../../settings.cpp ../../carDiagnostics.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../../entertainmentscreen.ui $(DISTDIR)/
 
 
@@ -1235,9 +1242,9 @@ check: first
 
 benchmark: first
 
-compiler_rcc_make_all: qrc_backgrounds.cpp qrc_home_page.cpp qrc_mp3.cpp qrc_mp4.cpp qrc_bluetooth.cpp
+compiler_rcc_make_all: qrc_backgrounds.cpp qrc_home_page.cpp qrc_mp3.cpp qrc_mp4.cpp qrc_bluetooth.cpp qrc_carDiagnostics.cpp
 compiler_rcc_clean:
-	-$(DEL_FILE) qrc_backgrounds.cpp qrc_home_page.cpp qrc_mp3.cpp qrc_mp4.cpp qrc_bluetooth.cpp
+	-$(DEL_FILE) qrc_backgrounds.cpp qrc_home_page.cpp qrc_mp3.cpp qrc_mp4.cpp qrc_bluetooth.cpp qrc_carDiagnostics.cpp
 qrc_backgrounds.cpp: ../../backgrounds.qrc \
 		/home/yasso/Qt/6.7.2/gcc_64/libexec/rcc \
 		../../media/blurredBlue.jpg \
@@ -1250,6 +1257,7 @@ qrc_backgrounds.cpp: ../../backgrounds.qrc \
 
 qrc_home_page.cpp: ../../home_page.qrc \
 		/home/yasso/Qt/6.7.2/gcc_64/libexec/rcc \
+		../../media/carDiagnostics.png \
 		../../media/home_icon.png \
 		../../media/home_icon.png \
 		../../media/mp4_icon.png \
@@ -1278,12 +1286,25 @@ qrc_mp3.cpp: ../../mp3.qrc \
 	/home/yasso/Qt/6.7.2/gcc_64/libexec/rcc -name mp3 --no-zstd ../../mp3.qrc -o qrc_mp3.cpp
 
 qrc_mp4.cpp: ../../mp4.qrc \
-		/home/yasso/Qt/6.7.2/gcc_64/libexec/rcc
+		/home/yasso/Qt/6.7.2/gcc_64/libexec/rcc \
+		../../media/pause_icon.svg \
+		../../media/volume_off-24px.svg \
+		../../media/backward_icon.svg \
+		../../media/goBack.svg \
+		../../media/forward_icon.svg \
+		../../media/video_icon.png \
+		../../media/volume_up-24px.svg \
+		../../media/play_icon.svg
 	/home/yasso/Qt/6.7.2/gcc_64/libexec/rcc -name mp4 --no-zstd ../../mp4.qrc -o qrc_mp4.cpp
 
 qrc_bluetooth.cpp: ../../bluetooth.qrc \
 		/home/yasso/Qt/6.7.2/gcc_64/libexec/rcc
 	/home/yasso/Qt/6.7.2/gcc_64/libexec/rcc -name bluetooth --no-zstd ../../bluetooth.qrc -o qrc_bluetooth.cpp
+
+qrc_carDiagnostics.cpp: ../../carDiagnostics.qrc \
+		/home/yasso/Qt/6.7.2/gcc_64/libexec/rcc \
+		../../media/carPicture.jpg
+	/home/yasso/Qt/6.7.2/gcc_64/libexec/rcc -name carDiagnostics --no-zstd ../../carDiagnostics.qrc -o qrc_carDiagnostics.cpp
 
 compiler_moc_predefs_make_all: moc_predefs.h
 compiler_moc_predefs_clean:
@@ -3292,6 +3313,287 @@ settings.o: ../../settings.cpp ../../entertainmentscreen.hpp \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o settings.o ../../settings.cpp
 
+carDiagnostics.o: ../../carDiagnostics.cpp ../../entertainmentscreen.hpp \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QMainWindow \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qmainwindow.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qtguiglobal.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qglobal.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qtversionchecks.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qtconfiginclude.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qconfig.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qtcore-config.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qtconfigmacros.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qtcoreexports.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qcompilerdetection.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qprocessordetection.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qsystemdetection.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qtdeprecationmarkers.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qtpreprocessorsupport.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qassert.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qtnoop.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qtypes.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qtversion.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qtclasshelpermacros.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qtypeinfo.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qcontainerfwd.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qsysinfo.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qlogging.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qflags.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qcompare_impl.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qatomic.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qbasicatomic.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qatomic_cxx11.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qgenericatomic.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qyieldcpu.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qconstructormacros.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qdarwinhelpers.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qexceptionhandling.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qforeach.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qttypetraits.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qfunctionpointer.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qglobalstatic.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qmalloc.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qminmax.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qnumeric.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qoverload.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qswap.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qtenvironmentvariables.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qtresource.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qttranslation.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qversiontagging.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qtgui-config.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qtguiexports.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qtwidgets-config.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qtwidgetsexports.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qwidget.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qwindowdefs.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qobjectdefs.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qnamespace.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qtmetamacros.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qfunctionaltools_impl.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qobject.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qstring.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qchar.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qstringview.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qbytearray.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qrefcount.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qarraydata.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qpair.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qarraydatapointer.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qarraydataops.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qcontainertools_impl.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qxptype_traits.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/q20functional.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/q20memory.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qbytearrayalgorithms.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qbytearrayview.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qstringfwd.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/q20type_traits.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qstringliteral.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qstringalgorithms.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qlatin1stringview.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qanystringview.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qutf8stringview.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qstringtokenizer.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qstringbuilder.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qstringconverter.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qstringconverter_base.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qlist.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qhashfunctions.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qiterator.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qbytearraylist.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qstringlist.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qalgorithms.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qstringmatcher.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qcoreevent.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qscopedpointer.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qmetatype.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qcompare.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qcomparehelpers.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qdatastream.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qiodevicebase.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qfloat16.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qmath.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qiterable.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qmetacontainer.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qcontainerinfo.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qtaggedpointer.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qscopeguard.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qobject_impl.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qbindingstorage.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qmargins.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/q23utility.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qaction.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qkeysequence.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qicon.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qsize.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qpixmap.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qpaintdevice.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qrect.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qpoint.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qcolor.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qrgb.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qrgba64.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qshareddata.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qimage.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qpixelformat.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qtransform.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qpolygon.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qregion.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qline.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qvariant.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qdebug.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qtextstream.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qcontiguouscache.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qsharedpointer.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qmap.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qshareddata_impl.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qset.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qhash.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qvarlengtharray.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qpalette.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qbrush.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qfont.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qendian.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qfontmetrics.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qfontinfo.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qsizepolicy.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qcursor.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qbitmap.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qevent.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qiodevice.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qurl.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qeventpoint.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qvector2d.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qvectornd.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qpointingdevice.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qinputdevice.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qscreen.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/QList \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/QObject \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/QRect \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/QSize \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/QSizeF \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/QTransform \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qnativeinterface.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qscreen_platform.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qguiapplication.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qcoreapplication.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qdeadlinetimer.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qelapsedtimer.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qeventloop.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qcoreapplication_platform.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qfuture.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qfutureinterface.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qmutex.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qtsan_impl.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qresultstore.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qfuture_impl.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qthreadpool.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qthread.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qrunnable.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qexception.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qpromise.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qinputmethod.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qlocale.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qguiapplication_platform.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qtabwidget.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/QOverload \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/QTimer \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qtimer.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qbasictimer.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/QDate \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qdatetime.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qcalendar.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/QTime \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/QIcon \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/QFile \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qfile.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qfiledevice.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/QTextStream \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QListWidget \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qlistwidget.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qlistview.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qabstractitemview.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qframe.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qabstractitemmodel.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qitemselectionmodel.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qstyleoption.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qvalidator.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qregularexpression.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qslider.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qabstractslider.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qstyle.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qtabbar.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qrubberband.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/QMediaPlayer \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/qmediaplayer.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/qtmultimediaglobal.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/qtmultimedia-config.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/qtmultimediaexports.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/qmediaenumdebug.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qmetaobject.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/qtaudio.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/qaudio.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/QAudioOutput \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/qaudiooutput.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/QDirIterator \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qdiriterator.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qdir.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qfileinfo.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qtimezone.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/QDir \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/QUrl \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QFileDialog \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qfiledialog.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qdialog.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/QMediaDevices \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/qmediadevices.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/QAudioDevice \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/qaudiodevice.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/qaudioformat.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/QRectF \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QGraphicsScene \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qgraphicsscene.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qpen.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimediaWidgets/QGraphicsVideoItem \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimediaWidgets/qgraphicsvideoitem.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qgraphicsitem.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qpainterpath.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimediaWidgets/qvideowidget.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimediaWidgets/qtmultimediawidgetsglobal.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimediaWidgets/qtmultimediawidgetsexports.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/QDebug \
+		ui_entertainmentscreen.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/QVariant \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/QAction \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QApplication \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qapplication.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QLabel \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qlabel.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qpicture.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qtextdocument.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QMenu \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qmenu.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QMenuBar \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qmenubar.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QPushButton \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qpushbutton.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qabstractbutton.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QSlider \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QStackedWidget \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qstackedwidget.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QStatusBar \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qstatusbar.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QWidget
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o carDiagnostics.o ../../carDiagnostics.cpp
+
 qrc_backgrounds.o: qrc_backgrounds.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_backgrounds.o qrc_backgrounds.cpp
 
@@ -3306,6 +3608,9 @@ qrc_mp4.o: qrc_mp4.cpp
 
 qrc_bluetooth.o: qrc_bluetooth.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_bluetooth.o qrc_bluetooth.cpp
+
+qrc_carDiagnostics.o: qrc_carDiagnostics.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_carDiagnostics.o qrc_carDiagnostics.cpp
 
 moc_entertainmentscreen.o: moc_entertainmentscreen.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_entertainmentscreen.o moc_entertainmentscreen.cpp

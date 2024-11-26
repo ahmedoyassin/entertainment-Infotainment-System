@@ -1,5 +1,13 @@
 <RCC>
     <qresource prefix="/mp4">
-
+	<file>media/goBack.svg</file>
+	<file>media/forward_icon.svg</file>
+	<file>media/backward_icon.svg</file>
+	<file>media/play_icon.svg</file>
+	<file>media/pause_icon.svg</file>
+	<file>media/volume_up-24px.svg</file>
+	<file>media/volume_off-24px.svg</file>
+	<file>media/video_icon.png</file>
+	
     </qresource>
 </RCC>
