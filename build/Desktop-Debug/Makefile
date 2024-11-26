@@ -57,6 +57,7 @@ SOURCES       = ../../main.cpp \
 		../../systeminterface.cpp \
 		../../mp3.cpp \
 		../../mp4.cpp \
+		../../calculator.cpp \
 		../../bluetooth.cpp \
 		../../settings.cpp qrc_backgrounds.cpp \
 		qrc_home_page.cpp \
@@ -69,6 +70,7 @@ OBJECTS       = main.o \
 		systeminterface.o \
 		mp3.o \
 		mp4.o \
+		calculator.o \
 		bluetooth.o \
 		settings.o \
 		qrc_backgrounds.o \
@@ -440,6 +442,7 @@ DIST          = /home/yasso/Qt/6.7.2/gcc_64/mkspecs/features/spec_pre.prf \
 		../../systeminterface.cpp \
 		../../mp3.cpp \
 		../../mp4.cpp \
+		../../calculator.cpp \
 		../../bluetooth.cpp \
 		../../settings.cpp
 QMAKE_TARGET  = infotainmentQt-draft2
@@ -1207,7 +1210,7 @@ distdir: FORCE
 	$(COPY_FILE) --parents ../../backgrounds.qrc ../../home_page.qrc ../../mp3.qrc ../../mp4.qrc ../../bluetooth.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /home/yasso/Qt/6.7.2/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../../entertainmentscreen.hpp ../../systeminterface.hpp ../../targets.hpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../../main.cpp ../../entertainmentscreen.cpp ../../systeminterface.cpp ../../mp3.cpp ../../mp4.cpp ../../bluetooth.cpp ../../settings.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../../main.cpp ../../entertainmentscreen.cpp ../../systeminterface.cpp ../../mp3.cpp ../../mp4.cpp ../../calculator.cpp ../../bluetooth.cpp ../../settings.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../../entertainmentscreen.ui $(DISTDIR)/
 
 
@@ -1262,7 +1265,16 @@ qrc_home_page.cpp: ../../home_page.qrc \
 	/home/yasso/Qt/6.7.2/gcc_64/libexec/rcc -name home_page --no-zstd ../../home_page.qrc -o qrc_home_page.cpp
 
 qrc_mp3.cpp: ../../mp3.qrc \
-		/home/yasso/Qt/6.7.2/gcc_64/libexec/rcc
+		/home/yasso/Qt/6.7.2/gcc_64/libexec/rcc \
+		../../media/pause_icon.svg \
+		../../media/shufflePressed_icon.png \
+		../../media/volume_off-24px.svg \
+		../../media/backward_icon.svg \
+		../../media/shuffle_icon.png \
+		../../media/forward_icon.svg \
+		../../media/volume_up-24px.svg \
+		../../media/HabibyLeeh.mp3 \
+		../../media/play_icon.svg
 	/home/yasso/Qt/6.7.2/gcc_64/libexec/rcc -name mp3 --no-zstd ../../mp3.qrc -o qrc_mp3.cpp
 
 qrc_mp4.cpp: ../../mp4.qrc \
@@ -1510,6 +1522,8 @@ moc_entertainmentscreen.cpp: ../../entertainmentscreen.hpp \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qmetaobject.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/qtaudio.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/qaudio.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/QAudioOutput \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/qaudiooutput.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/QDirIterator \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qdiriterator.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qdir.h \
@@ -1517,6 +1531,14 @@ moc_entertainmentscreen.cpp: ../../entertainmentscreen.hpp \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qtimezone.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/QDir \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/QUrl \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QFileDialog \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qfiledialog.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qdialog.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/QMediaDevices \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/qmediadevices.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/QAudioDevice \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/qaudiodevice.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/qaudioformat.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/QRectF \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QGraphicsScene \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qgraphicsscene.h \
@@ -1529,6 +1551,28 @@ moc_entertainmentscreen.cpp: ../../entertainmentscreen.hpp \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimediaWidgets/qtmultimediawidgetsglobal.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimediaWidgets/qtmultimediawidgetsexports.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/QDebug \
+		ui_entertainmentscreen.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/QVariant \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/QAction \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QApplication \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qapplication.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QLabel \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qlabel.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qpicture.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qtextdocument.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QMenu \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qmenu.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QMenuBar \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qmenubar.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QPushButton \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qpushbutton.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qabstractbutton.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QSlider \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QStackedWidget \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qstackedwidget.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QStatusBar \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qstatusbar.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QWidget \
 		moc_predefs.h \
 		/home/yasso/Qt/6.7.2/gcc_64/libexec/moc
 	/home/yasso/Qt/6.7.2/gcc_64/libexec/moc $(DEFINES) --include '/media/yasso/yasso2/Embedded Systems/grad project/qt/InfotainmentQt-draft2/build/Desktop-Debug/moc_predefs.h' -I/home/yasso/Qt/6.7.2/gcc_64/mkspecs/linux-g++ -I'/media/yasso/yasso2/Embedded Systems/grad project/qt/InfotainmentQt-draft2' -I/home/yasso/Qt/6.7.2/gcc_64/include -I/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimediaWidgets -I/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia -I/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets -I/home/yasso/Qt/6.7.2/gcc_64/include/QtGui -I/home/yasso/Qt/6.7.2/gcc_64/include/QtNetwork -I/home/yasso/Qt/6.7.2/gcc_64/include/QtCore -I. -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../../entertainmentscreen.hpp -o moc_entertainmentscreen.cpp
@@ -1782,6 +1826,8 @@ main.o: ../../main.cpp ../../entertainmentscreen.hpp \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qmetaobject.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/qtaudio.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/qaudio.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/QAudioOutput \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/qaudiooutput.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/QDirIterator \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qdiriterator.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qdir.h \
@@ -1789,6 +1835,14 @@ main.o: ../../main.cpp ../../entertainmentscreen.hpp \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qtimezone.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/QDir \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/QUrl \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QFileDialog \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qfiledialog.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qdialog.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/QMediaDevices \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/qmediadevices.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/QAudioDevice \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/qaudiodevice.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/qaudioformat.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/QRectF \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QGraphicsScene \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qgraphicsscene.h \
@@ -1801,8 +1855,28 @@ main.o: ../../main.cpp ../../entertainmentscreen.hpp \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimediaWidgets/qtmultimediawidgetsglobal.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimediaWidgets/qtmultimediawidgetsexports.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/QDebug \
+		ui_entertainmentscreen.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/QVariant \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/QAction \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QApplication \
-		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qapplication.h
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qapplication.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QLabel \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qlabel.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qpicture.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qtextdocument.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QMenu \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qmenu.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QMenuBar \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qmenubar.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QPushButton \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qpushbutton.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qabstractbutton.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QSlider \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QStackedWidget \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qstackedwidget.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QStatusBar \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qstatusbar.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../../main.cpp
 
 entertainmentscreen.o: ../../entertainmentscreen.cpp ../../entertainmentscreen.hpp \
@@ -2033,6 +2107,8 @@ entertainmentscreen.o: ../../entertainmentscreen.cpp ../../entertainmentscreen.h
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qmetaobject.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/qtaudio.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/qaudio.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/QAudioOutput \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/qaudiooutput.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/QDirIterator \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qdiriterator.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qdir.h \
@@ -2040,6 +2116,14 @@ entertainmentscreen.o: ../../entertainmentscreen.cpp ../../entertainmentscreen.h
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qtimezone.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/QDir \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/QUrl \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QFileDialog \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qfiledialog.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qdialog.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/QMediaDevices \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/qmediadevices.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/QAudioDevice \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/qaudiodevice.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/qaudioformat.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/QRectF \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QGraphicsScene \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qgraphicsscene.h \
@@ -2057,6 +2141,10 @@ entertainmentscreen.o: ../../entertainmentscreen.cpp ../../entertainmentscreen.h
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/QAction \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QApplication \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qapplication.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QLabel \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qlabel.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qpicture.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qtextdocument.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QMenu \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qmenu.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QMenuBar \
@@ -2064,6 +2152,7 @@ entertainmentscreen.o: ../../entertainmentscreen.cpp ../../entertainmentscreen.h
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QPushButton \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qpushbutton.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qabstractbutton.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QSlider \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QStackedWidget \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qstackedwidget.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QStatusBar \
@@ -2304,6 +2393,8 @@ mp3.o: ../../mp3.cpp ../../entertainmentscreen.hpp \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qmetaobject.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/qtaudio.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/qaudio.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/QAudioOutput \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/qaudiooutput.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/QDirIterator \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qdiriterator.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qdir.h \
@@ -2311,6 +2402,14 @@ mp3.o: ../../mp3.cpp ../../entertainmentscreen.hpp \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qtimezone.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/QDir \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/QUrl \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QFileDialog \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qfiledialog.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qdialog.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/QMediaDevices \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/qmediadevices.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/QAudioDevice \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/qaudiodevice.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/qaudioformat.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/QRectF \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QGraphicsScene \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qgraphicsscene.h \
@@ -2328,6 +2427,10 @@ mp3.o: ../../mp3.cpp ../../entertainmentscreen.hpp \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/QAction \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QApplication \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qapplication.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QLabel \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qlabel.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qpicture.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qtextdocument.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QMenu \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qmenu.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QMenuBar \
@@ -2335,6 +2438,7 @@ mp3.o: ../../mp3.cpp ../../entertainmentscreen.hpp \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QPushButton \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qpushbutton.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qabstractbutton.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QSlider \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QStackedWidget \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qstackedwidget.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QStatusBar \
@@ -2570,6 +2674,8 @@ mp4.o: ../../mp4.cpp ../../entertainmentscreen.hpp \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qmetaobject.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/qtaudio.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/qaudio.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/QAudioOutput \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/qaudiooutput.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/QDirIterator \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qdiriterator.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qdir.h \
@@ -2577,6 +2683,14 @@ mp4.o: ../../mp4.cpp ../../entertainmentscreen.hpp \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qtimezone.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/QDir \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/QUrl \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QFileDialog \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qfiledialog.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qdialog.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/QMediaDevices \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/qmediadevices.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/QAudioDevice \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/qaudiodevice.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/qaudioformat.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/QRectF \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QGraphicsScene \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qgraphicsscene.h \
@@ -2594,6 +2708,10 @@ mp4.o: ../../mp4.cpp ../../entertainmentscreen.hpp \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/QAction \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QApplication \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qapplication.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QLabel \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qlabel.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qpicture.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qtextdocument.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QMenu \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qmenu.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QMenuBar \
@@ -2601,12 +2719,16 @@ mp4.o: ../../mp4.cpp ../../entertainmentscreen.hpp \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QPushButton \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qpushbutton.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qabstractbutton.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QSlider \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QStackedWidget \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qstackedwidget.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QStatusBar \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qstatusbar.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mp4.o ../../mp4.cpp
+
+calculator.o: ../../calculator.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o calculator.o ../../calculator.cpp
 
 bluetooth.o: ../../bluetooth.cpp ../../entertainmentscreen.hpp \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QMainWindow \
@@ -2836,6 +2958,8 @@ bluetooth.o: ../../bluetooth.cpp ../../entertainmentscreen.hpp \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qmetaobject.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/qtaudio.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/qaudio.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/QAudioOutput \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/qaudiooutput.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/QDirIterator \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qdiriterator.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qdir.h \
@@ -2843,6 +2967,14 @@ bluetooth.o: ../../bluetooth.cpp ../../entertainmentscreen.hpp \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qtimezone.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/QDir \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/QUrl \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QFileDialog \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qfiledialog.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qdialog.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/QMediaDevices \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/qmediadevices.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/QAudioDevice \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/qaudiodevice.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/qaudioformat.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/QRectF \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QGraphicsScene \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qgraphicsscene.h \
@@ -2854,7 +2986,29 @@ bluetooth.o: ../../bluetooth.cpp ../../entertainmentscreen.hpp \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimediaWidgets/qvideowidget.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimediaWidgets/qtmultimediawidgetsglobal.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimediaWidgets/qtmultimediawidgetsexports.h \
-		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/QDebug
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/QDebug \
+		ui_entertainmentscreen.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/QVariant \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/QAction \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QApplication \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qapplication.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QLabel \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qlabel.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qpicture.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qtextdocument.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QMenu \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qmenu.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QMenuBar \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qmenubar.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QPushButton \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qpushbutton.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qabstractbutton.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QSlider \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QStackedWidget \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qstackedwidget.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QStatusBar \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qstatusbar.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o bluetooth.o ../../bluetooth.cpp
 
 settings.o: ../../settings.cpp ../../entertainmentscreen.hpp \
@@ -3085,6 +3239,8 @@ settings.o: ../../settings.cpp ../../entertainmentscreen.hpp \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qmetaobject.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/qtaudio.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/qaudio.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/QAudioOutput \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/qaudiooutput.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/QDirIterator \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qdiriterator.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qdir.h \
@@ -3092,6 +3248,14 @@ settings.o: ../../settings.cpp ../../entertainmentscreen.hpp \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/qtimezone.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/QDir \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/QUrl \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QFileDialog \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qfiledialog.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qdialog.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/QMediaDevices \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/qmediadevices.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/QAudioDevice \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/qaudiodevice.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtMultimedia/qaudioformat.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtCore/QRectF \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QGraphicsScene \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qgraphicsscene.h \
@@ -3109,6 +3273,10 @@ settings.o: ../../settings.cpp ../../entertainmentscreen.hpp \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/QAction \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QApplication \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qapplication.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QLabel \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qlabel.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qpicture.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qtextdocument.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QMenu \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qmenu.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QMenuBar \
@@ -3116,6 +3284,7 @@ settings.o: ../../settings.cpp ../../entertainmentscreen.hpp \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QPushButton \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qpushbutton.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qabstractbutton.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QSlider \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QStackedWidget \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qstackedwidget.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QStatusBar \

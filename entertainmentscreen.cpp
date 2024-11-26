@@ -1,5 +1,4 @@
 #include "entertainmentscreen.hpp"
-#include "ui_entertainmentscreen.h"
 
 #include "systeminterface.hpp"
 #include "targets.hpp"
@@ -8,17 +7,14 @@
 // Constants for command status
 constexpr int commandSuccess = 0;
 /* General Variables */
-int currentVolume = defaultVolume;
-
+int currentIndex = 0;
 /* Multimedia Variables */
-int volumeStep = volume_step;
 int flashStatus = flashNotDetected;
 
 std::string usbName, usbPath;
 
 /* Music Variables */
 std::string musicFileExtension = ".mp3";
-int isMusicPlaying = 0;
 
 /* Video Variables */
 std::string videoFileExtension = ".mp4";
@@ -39,30 +35,115 @@ Entertainmentscreen::Entertainmentscreen(QWidget *parent)
     connect(timer,SIGNAL(timeout()),this,SLOT(refreshTime()));
     timer->start();
     startPage();
+    /****************************************************************************/
+    /**************************** Background Setup *****************************/
+    /**************************************************************************/
+    Entertainmentscreen::setStyleSheet("background:url(:/mainBG/media/darkmodebackground.jpeg)");
+    ui->darkLightMode->setIcon(QIcon(":/home_page/media/darkThemeOn_icon.png"));
+    ui->darkLightMode->setIconSize(QSize(50,20));
 
-    /*** Home Pages Buttons ***/
-
-    connect(ui->homeButtonmp3, SIGNAL(clicked()), SLOT(navigateToHome()));
-    connect(ui->homeButtonmp4, SIGNAL(clicked()), SLOT(navigateToHome()));
-
-   /************************************************************************/
+    /***************************************************************************/
+    /************************* Start Pages Buttons ****************************/
+    /*************************************************************************/
 
     connect(ui->darkLightMode,SIGNAL(clicked()),SLOT(toggleDarkTheme()));
     connect(ui->startButton,SIGNAL(clicked()),SLOT(navigateToHome()));
+
+    ui->startButton->setIcon(QIcon(":/home_page/media/startButton.png"));
+    ui->startButton->setIconSize(QSize(200,200));
+    /***************************************************************************/
+    /************************* Home Pages Buttons *****************************/
+    /*************************************************************************/
+    ui->mp3Button->setIcon(QIcon(":/home_page/media/music_icon.png"));
+    ui->mp3Button->setIconSize(QSize(100,100));
+
+    ui->mp4Button->setIcon(QIcon(":/home_page/media/video_icon.png"));
+    ui->mp4Button->setIconSize(QSize(100,100));
+    ui->bluetoothButton->setIcon(QIcon(":/home_page/media/bluetooth_icon.png"));
+    ui->bluetoothButton->setIconSize(QSize(100,100));
+    ui->settingsButton->setIcon(QIcon(":/home_page/media/settings_icon.png"));
+    ui->settingsButton->setIconSize(QSize(100,100));
+
     connect(ui->settingsButton,SIGNAL(clicked()),SLOT(handleSettingsButtonPress()));
     connect(ui->mp3Button, SIGNAL(clicked()), SLOT(handleMusicButtonPress()));
     connect(ui->mp4Button, SIGNAL(clicked()), SLOT(handleVideoButtonPress()));
 
+    connect(ui->homeButtonmp4, SIGNAL(clicked()), SLOT(navigateToHome()));
+
+   /***************************************************************************/
+
+
+
+
+    /***************************************************************************/
+    /************************* Music Pages Buttons ****************************/
+    /*************************************************************************/
+
+    audioOutput->setDevice(audioDevice); // Set the device
+    musicPlayer->setSource(QUrl::fromLocalFile("/media/yasso/yasso2/Embedded Systems/grad project/qt/InfotainmentQt-draft2/media/HabibyLeeh.mp3"));
+    ui->volumeSlider->setSliderPosition(defaultVolume);
+    audioOutput->setVolume(static_cast<float> (defaultVolume)/100.00f);
+    musicPlayer->setAudioOutput(audioOutput);
+    connect(musicPlayer,SIGNAL(positionChanged(qint64)), SLOT(refreshPosition()));
+    connect(ui->musicSlider, SIGNAL(sliderReleased()),SLOT(refreshDuration()));
+    connect(musicPlayer, SIGNAL(audioOutputChanged()),SLOT(resetSong()));
+    ui->musicSlider->setMaximum(100);
+
+
+    ui->pausecontinueButton->setIcon(QIcon(":/mp3/media/play_icon.svg"));
+    ui->pausecontinueButton->setIconSize(QSize(90,40));
+    connect(ui->pausecontinueButton, SIGNAL(clicked()), SLOT(handlePlayButtonPress()));
+    ui->forwardButton->setIcon(QIcon(":/mp3/media/forward_icon.svg"));
+    ui->forwardButton->setIconSize(QSize(90,40));
+    connect(ui->forwardButton, SIGNAL(clicked()), SLOT(handleForwardButtonPress()));
+    ui->backwardButton->setIcon(QIcon(":/mp3/media/backward_icon.svg"));
+    ui->backwardButton->setIconSize(QSize(90,40));
+    connect(ui->forwardButton, SIGNAL(clicked()), SLOT(handleBackwardButtonPress()));
+    ui->shuffleButton->setIcon(QIcon(":/mp3/media/shuffle_icon.png"));
+    ui->shuffleButton->setIconSize(QSize(90,40));
+    connect(ui->shuffleButton, SIGNAL(clicked()), SLOT(handleShuffleButtonPress()));
+    ui->musicVolume->setIcon(QIcon(":/mp3/media/volume_up-24px.svg"));
+    ui->musicVolume->setIconSize(QSize(90,40));
+    connect(ui->volumeSlider, SIGNAL(actionTriggered(int)), SLOT(handleVolumeSlider()));
+    // QStringList playList = parsePlaylist(playlistFile);
+    // musicPlayer->setAudioOutput(audioOutput);
+    // QObject::connect(musicPlayer, &QMediaPlayer::mediaStatusChanged, [&](QMediaPlayer::MediaStatus status) {
+    //     if (status == QMediaPlayer::EndOfMedia) {
+    //         currentIndex = (currentIndex + 1) % playList.size();
+    //         musicPlayer->setSource(QUrl::fromLocalFile(playList[currentIndex]));
+    //         musicPlayer->play();
+    //     }
+    // });
+    // musicPlayer->
+    // musicPlayer->setSource(QUrl(":/mp3/media/MATEEGY_A3ADY_ALEIKY.mp3"));
+    // musicPlayer->activeAudioTrack();
+    // musicPlayer->play();
+
+    connect(ui->homeButtonmp3, SIGNAL(clicked()), SLOT(navigateToHome()));
 }
 
-Entertainmentscreen::~Entertainmentscreen()
-{
-    delete ui;
-}
+Entertainmentscreen::~Entertainmentscreen(){   delete ui;  }
 
 /******************************************************************************************************************************/
 /*************************************************    Generic     ************************************************************/
 /****************************************************************************************************************************/
+
+
+// QStringList parsePlaylist(const QString &filePath) {
+//     QStringList playlist;
+//     QFile file(filePath);
+
+//     if (file.open(QIODevice::ReadOnly)) {
+//         while (!file.atEnd()) {
+//             QString line = file.readLine().trimmed();
+//             if (!line.startsWith("#") && !line.isEmpty()) {
+//                 playlist.append(line);
+//             }
+//         }
+//     }
+
+//     return playlist;
+// }
 
 /* Time and date updating method */
 void Entertainmentscreen:: refreshTime(){
@@ -74,30 +155,10 @@ void Entertainmentscreen:: refreshTime(){
     time = currentTime.toString("hh:mm AP");
     ui->timeText->setText(time);
     ui->timeText->setAlignment(Qt::AlignRight);
-    //ui->setTimeDateButton->setText(time + ", " + date);
 }
-void Entertainmentscreen:: startPage(){
-    ui->entertainmentScreenSwitch->setCurrentIndex(startPageIndex);
-    Entertainmentscreen::setStyleSheet("background:url(:/mainBG/media/darkmodebackground.jpeg)");
-    ui->darkLightMode->setIcon(QIcon(":/home_page/media/darkThemeOn_icon.png"));
-    ui->darkLightMode->setIconSize(QSize(50,20));
-    ui->startButton->setIcon(QIcon(":/home_page/media/startButton.png"));
-    ui->startButton->setIconSize(QSize(200,200));
-}
+void Entertainmentscreen:: startPage(){    ui->entertainmentScreenSwitch->setCurrentIndex(startPageIndex);  }
 /* Mutual home button in every page (not avaiable in startPage) */
-void Entertainmentscreen:: navigateToHome(){
-    ui->entertainmentScreenSwitch->setCurrentIndex(homePageIndex);
-    // ui->homeButton->setIcon(QIcon(":/home_page/media/home_icon.png"));
-    // ui->homeButton->setIconSize(QSize(50,50));
-    ui->mp3Button->setIcon(QIcon(":/home_page/media/music_icon.png"));
-    ui->mp3Button->setIconSize(QSize(100,100));
-    ui->mp4Button->setIcon(QIcon(":/home_page/media/video_icon.png"));
-    ui->mp4Button->setIconSize(QSize(100,100));
-    ui->bluetoothButton->setIcon(QIcon(":/home_page/media/bluetooth_icon.png"));
-    ui->bluetoothButton->setIconSize(QSize(100,100));
-    ui->settingsButton->setIcon(QIcon(":/home_page/media/settings_icon.png"));
-    ui->settingsButton->setIconSize(QSize(100,100));
-}
+void Entertainmentscreen:: navigateToHome(){    ui->entertainmentScreenSwitch->setCurrentIndex(homePageIndex);  }
 
 /******************************************************************************************************************************/
 /*************************************************    MultiMedia     *********************************************************/

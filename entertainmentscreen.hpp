@@ -17,10 +17,14 @@
 #include <QTextStream>
 #include <QListWidget>
 #include <QMediaPlayer>
+#include <QAudioOutput>
 //#include <QMediaPlaylist>
 #include <QDirIterator>
 #include <QDir>
 #include <QUrl>
+#include <QFileDialog>
+#include <QMediaDevices>
+#include <QAudioDevice>
 
 /* MP4 */
 #include <QRectF>
@@ -33,6 +37,9 @@
 #include <iostream>
 #include <typeinfo>
 #include <QDebug>
+
+
+#include "ui_entertainmentscreen.h"
 
 enum{
     startPageIndex =0,
@@ -52,7 +59,7 @@ enum{
 enum{
     minVolume = 0,
     volume_step = 10,
-    defaultVolume = 50,
+    defaultVolume = 25,
     maxVolume = 100
 }volume_limits;
 
@@ -88,10 +95,16 @@ public:
     QTimer *flashDetectionTimer;
     QTimer *bluetoothDetectionTimer;
     QDate currentDate;
+    QString format;
     QString date;
     QTime currentTime;
     QString time;
-
+    QString FileName;
+    //QMediaPlaylist *playList = new QMediaPlaylist;
+    QMediaPlayer *musicPlayer = new QMediaPlayer;
+    QAudioOutput *audioOutput = new QAudioOutput();
+    //QString playlistFile = ":/mp3/media.mp3";
+    QAudioDevice audioDevice = QMediaDevices::defaultAudioOutput(); // Get the default device
 
 private slots:
     /******************************************************************************************************************************/
@@ -104,7 +117,7 @@ private slots:
     /******************************************************************************************************************************/
     /*************************************************    MultiMedia     *********************************************************/
     /****************************************************************************************************************************/
-
+    //QStringList parsePlaylist(const QString &filePath);
     void refreshFlashStatus();
 
     /*****************************************************************************************************************************/
@@ -112,20 +125,20 @@ private slots:
     /***************************************************************************************************************************/
 
     void handleMusicButtonPress();
-    void handleSongListSelection(QListWidgetItem* item);
+    void handleSongListSelection();
     void onSongUpdate();
     void startSong();
     void refreshSongList();
-    void handleVolumeDownPress();
-    void handleVolumeUpPress();
+    void handleVolumeSlider();
     void handlePlayButtonPress();
     void handleForwardButtonPress();
     void handleBackwardButtonPress();
     void handleRepeatButtonPress();
     void handleShuffleButtonPress();
-    void handleStopButtonPress();
     void togglePlayback();
-
+    void refreshDuration();
+    void refreshPosition();
+    void resetSong();
     /*****************************************************************************************************************************/
     /*************************************************    MP4    ****************************************************************/
     /***************************************************************************************************************************/

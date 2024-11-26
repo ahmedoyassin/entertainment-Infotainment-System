@@ -17,6 +17,7 @@
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSlider>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QWidget>
@@ -26,6 +27,8 @@ QT_BEGIN_NAMESPACE
 class Ui_Entertainmentscreen
 {
 public:
+    QAction *actionOpen_File;
+    QAction *actionOpen_File_Here;
     QWidget *centralwidget;
     QStackedWidget *entertainmentScreenSwitch;
     QWidget *startPage;
@@ -41,12 +44,24 @@ public:
     QWidget *musicPage;
     QPushButton *musicIconmp3;
     QPushButton *homeButtonmp3;
+    QPushButton *pausecontinueButton;
+    QPushButton *forwardButton;
+    QPushButton *backwardButton;
+    QPushButton *shuffleButton;
+    QSlider *volumeSlider;
+    QPushButton *musicVolume;
+    QSlider *musicSlider;
+    QLabel *audioplayingtitle;
+    QLabel *label;
+    QLabel *timeDuration0;
+    QLabel *timeDuration1;
     QWidget *videoPage;
     QPushButton *videoconmp4;
     QPushButton *homeButtonmp4;
     QPushButton *musicIconmp3_2;
     QMenuBar *menubar;
     QMenu *menuentertainmentscreen;
+    QMenu *menuOpen;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *Entertainmentscreen)
@@ -57,6 +72,10 @@ public:
         Entertainmentscreen->setMaximumSize(QSize(800, 600));
         Entertainmentscreen->setMouseTracking(false);
         Entertainmentscreen->setAutoFillBackground(true);
+        actionOpen_File = new QAction(Entertainmentscreen);
+        actionOpen_File->setObjectName("actionOpen_File");
+        actionOpen_File_Here = new QAction(Entertainmentscreen);
+        actionOpen_File_Here->setObjectName("actionOpen_File_Here");
         centralwidget = new QWidget(Entertainmentscreen);
         centralwidget->setObjectName("centralwidget");
         entertainmentScreenSwitch = new QStackedWidget(centralwidget);
@@ -77,7 +96,7 @@ public:
 "}"));
         darkLightMode = new QPushButton(startPage);
         darkLightMode->setObjectName("darkLightMode");
-        darkLightMode->setGeometry(QRect(700, 100, 60, 25));
+        darkLightMode->setGeometry(QRect(870, 100, 60, 25));
         darkLightMode->setAutoFillBackground(false);
         darkLightMode->setStyleSheet(QString::fromUtf8("QPushButton{\n"
 "	border:none;\n"
@@ -129,11 +148,71 @@ public:
         homeButtonmp3->setGeometry(QRect(462, 480, 100, 50));
         homeButtonmp3->setAutoFillBackground(false);
         homeButtonmp3->setStyleSheet(QString::fromUtf8("QPushButton{\n"
-"background-color: #4caf50;\n"
-"color: white;\n"
 "border:none;\n"
 "outline: none;\n"
 "}"));
+        pausecontinueButton = new QPushButton(musicPage);
+        pausecontinueButton->setObjectName("pausecontinueButton");
+        pausecontinueButton->setGeometry(QRect(492, 400, 41, 40));
+        pausecontinueButton->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"border:none;\n"
+"outline: none;\n"
+"}"));
+        forwardButton = new QPushButton(musicPage);
+        forwardButton->setObjectName("forwardButton");
+        forwardButton->setGeometry(QRect(532, 400, 40, 40));
+        forwardButton->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"border:none;\n"
+"outline: none;\n"
+"}"));
+        backwardButton = new QPushButton(musicPage);
+        backwardButton->setObjectName("backwardButton");
+        backwardButton->setGeometry(QRect(452, 400, 40, 40));
+        backwardButton->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"border:none;\n"
+"outline: none;\n"
+"}"));
+        shuffleButton = new QPushButton(musicPage);
+        shuffleButton->setObjectName("shuffleButton");
+        shuffleButton->setGeometry(QRect(270, 445, 40, 40));
+        shuffleButton->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"border:none;\n"
+"outline: none;\n"
+"}"));
+        volumeSlider = new QSlider(musicPage);
+        volumeSlider->setObjectName("volumeSlider");
+        volumeSlider->setGeometry(QRect(760, 445, 100, 40));
+        volumeSlider->setStyleSheet(QString::fromUtf8("QSlider {\n"
+"    from: 1\n"
+"    value: 25\n"
+"    to: 100\n"
+"}"));
+        volumeSlider->setOrientation(Qt::Orientation::Horizontal);
+        musicVolume = new QPushButton(musicPage);
+        musicVolume->setObjectName("musicVolume");
+        musicVolume->setGeometry(QRect(720, 445, 40, 40));
+        musicVolume->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"border:none;\n"
+"outline: none;\n"
+"}"));
+        musicSlider = new QSlider(musicPage);
+        musicSlider->setObjectName("musicSlider");
+        musicSlider->setGeometry(QRect(412, 455, 200, 20));
+        musicSlider->setOrientation(Qt::Orientation::Horizontal);
+        audioplayingtitle = new QLabel(musicPage);
+        audioplayingtitle->setObjectName("audioplayingtitle");
+        audioplayingtitle->setGeometry(QRect(250, 220, 231, 17));
+        label = new QLabel(musicPage);
+        label->setObjectName("label");
+        label->setGeometry(QRect(120, 220, 101, 17));
+        timeDuration0 = new QLabel(musicPage);
+        timeDuration0->setObjectName("timeDuration0");
+        timeDuration0->setGeometry(QRect(350, 455, 60, 17));
+        timeDuration0->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        timeDuration1 = new QLabel(musicPage);
+        timeDuration1->setObjectName("timeDuration1");
+        timeDuration1->setGeometry(QRect(620, 455, 60, 17));
+        timeDuration1->setAlignment(Qt::AlignmentFlag::AlignCenter);
         entertainmentScreenSwitch->addWidget(musicPage);
         videoPage = new QWidget();
         videoPage->setObjectName("videoPage");
@@ -166,16 +245,22 @@ public:
         menubar->setGeometry(QRect(0, 0, 800, 22));
         menuentertainmentscreen = new QMenu(menubar);
         menuentertainmentscreen->setObjectName("menuentertainmentscreen");
+        menuOpen = new QMenu(menubar);
+        menuOpen->setObjectName("menuOpen");
         Entertainmentscreen->setMenuBar(menubar);
         statusbar = new QStatusBar(Entertainmentscreen);
         statusbar->setObjectName("statusbar");
         Entertainmentscreen->setStatusBar(statusbar);
 
         menubar->addAction(menuentertainmentscreen->menuAction());
+        menubar->addAction(menuOpen->menuAction());
+        menuentertainmentscreen->addSeparator();
+        menuentertainmentscreen->addAction(actionOpen_File);
+        menuOpen->addAction(actionOpen_File_Here);
 
         retranslateUi(Entertainmentscreen);
 
-        entertainmentScreenSwitch->setCurrentIndex(0);
+        entertainmentScreenSwitch->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(Entertainmentscreen);
@@ -184,6 +269,8 @@ public:
     void retranslateUi(QMainWindow *Entertainmentscreen)
     {
         Entertainmentscreen->setWindowTitle(QCoreApplication::translate("Entertainmentscreen", "Entertainmentscreen", nullptr));
+        actionOpen_File->setText(QCoreApplication::translate("Entertainmentscreen", "Open File", nullptr));
+        actionOpen_File_Here->setText(QCoreApplication::translate("Entertainmentscreen", "Open Audio File", nullptr));
         startButton->setText(QString());
         darkLightMode->setText(QString());
         dateText->setText(QString());
@@ -194,10 +281,20 @@ public:
         bluetoothButton->setText(QString());
         musicIconmp3->setText(QString());
         homeButtonmp3->setText(QString());
+        pausecontinueButton->setText(QString());
+        forwardButton->setText(QString());
+        backwardButton->setText(QString());
+        shuffleButton->setText(QString());
+        musicVolume->setText(QString());
+        audioplayingtitle->setText(QCoreApplication::translate("Entertainmentscreen", "FILE_NAME", nullptr));
+        label->setText(QCoreApplication::translate("Entertainmentscreen", "Audio Playing:", nullptr));
+        timeDuration0->setText(QCoreApplication::translate("Entertainmentscreen", "00:00:00", nullptr));
+        timeDuration1->setText(QCoreApplication::translate("Entertainmentscreen", "00:00:00", nullptr));
         videoconmp4->setText(QString());
         homeButtonmp4->setText(QString());
         musicIconmp3_2->setText(QString());
         menuentertainmentscreen->setTitle(QCoreApplication::translate("Entertainmentscreen", "NeuroDrive", nullptr));
+        menuOpen->setTitle(QCoreApplication::translate("Entertainmentscreen", "Open", nullptr));
     } // retranslateUi
 
 };

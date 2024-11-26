@@ -23,6 +23,7 @@ SOURCES += \
     systeminterface.cpp \
     mp3.cpp \
     mp4.cpp \
+    calculator.cpp \
     bluetooth.cpp \
     settings.cpp
 
