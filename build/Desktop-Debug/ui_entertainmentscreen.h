@@ -54,11 +54,10 @@ public:
     QSlider *volumeSlider;
     QPushButton *musicVolume;
     QSlider *musicSlider;
-    QLabel *audioplayingtitle;
     QLabel *label;
     QLabel *timeDuration0;
     QLabel *timeDuration1;
-    QListWidget *runningSongsList;
+    QListWidget *SongList;
     QWidget *calcolatorPage;
     QLabel *label_2;
     QPushButton *pushButton;
@@ -84,13 +83,24 @@ public:
     QPushButton *carPictureButton;
     QCheckBox *checkBox;
     QLabel *backTierIssue;
+    QCheckBox *lockChecker;
+    QPushButton *lockerButton;
+    QLabel *label_3;
     QWidget *preVideoPage;
     QPushButton *videoconmp4;
     QPushButton *homeButtonmp4;
     QWidget *videoPage;
     QPushButton *videoconmp4_2;
     QPushButton *homeButtonmp4_2;
-    QPushButton *pushButton_19;
+    QPushButton *goBackScreen;
+    QPushButton *videoVolume;
+    QLabel *videoDuration0;
+    QSlider *volumeVideoSlider;
+    QLabel *videoDuration1;
+    QSlider *videoSlider;
+    QPushButton *videoForwardButton;
+    QPushButton *playVideoButton;
+    QPushButton *videoBackwardButton;
     QMenuBar *menubar;
     QMenu *menuentertainmentscreen;
     QMenu *menuOpen;
@@ -121,10 +131,31 @@ public:
         startButton->setGeometry(QRect(410, 198, 196, 196));
         startButton->setAcceptDrops(true);
         startButton->setAutoFillBackground(false);
-        startButton->setStyleSheet(QString::fromUtf8("QPushButton{\n"
-"color\n"
-"	background-color: rgb(6, A, 14);\n"
-"	border:none;\n"
+        startButton->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"    color: rgb(255, 255, 255);\n"
+"    border: none;\n"
+"    padding: 8px;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: rgba(255, 255, 255, 25);\n"
+"}\n"
+"\n"
+"QPushButton:disabled {\n"
+"    color: rgba(255, 255, 255, 128);\n"
+"}\n"
+"\n"
+"QPushButton:!flat {\n"
+"    background-color: rgba(255, 255, 255, 31);\n"
+"}\n"
+"\n"
+"QPushButton:!flat:checked {\n"
+"    color: rgb(0, 0, 0);\n"
+"    background-color: palette(base);\n"
+"}\n"
+"\n"
+"QPushButton:!flat:disabled {\n"
+"    background-color: rgba(255, 255, 255, 13);\n"
 "}"));
         darkLightMode = new QPushButton(startPage);
         darkLightMode->setObjectName("darkLightMode");
@@ -237,12 +268,9 @@ public:
         musicSlider->setObjectName("musicSlider");
         musicSlider->setGeometry(QRect(412, 455, 200, 20));
         musicSlider->setOrientation(Qt::Orientation::Horizontal);
-        audioplayingtitle = new QLabel(musicPage);
-        audioplayingtitle->setObjectName("audioplayingtitle");
-        audioplayingtitle->setGeometry(QRect(250, 220, 231, 17));
         label = new QLabel(musicPage);
         label->setObjectName("label");
-        label->setGeometry(QRect(120, 220, 101, 17));
+        label->setGeometry(QRect(90, 40, 101, 17));
         timeDuration0 = new QLabel(musicPage);
         timeDuration0->setObjectName("timeDuration0");
         timeDuration0->setGeometry(QRect(350, 455, 60, 17));
@@ -251,9 +279,10 @@ public:
         timeDuration1->setObjectName("timeDuration1");
         timeDuration1->setGeometry(QRect(620, 455, 60, 17));
         timeDuration1->setAlignment(Qt::AlignmentFlag::AlignCenter);
-        runningSongsList = new QListWidget(musicPage);
-        runningSongsList->setObjectName("runningSongsList");
-        runningSongsList->setGeometry(QRect(340, 110, 256, 192));
+        SongList = new QListWidget(musicPage);
+        new QListWidgetItem(SongList);
+        SongList->setObjectName("SongList");
+        SongList->setGeometry(QRect(140, 60, 321, 81));
         entertainmentScreenSwitch->addWidget(musicPage);
         calcolatorPage = new QWidget();
         calcolatorPage->setObjectName("calcolatorPage");
@@ -328,10 +357,10 @@ public:
 "}"));
         checkBox = new QCheckBox(carDiagnosticPage);
         checkBox->setObjectName("checkBox");
-        checkBox->setGeometry(QRect(110, 60, 131, 23));
+        checkBox->setGeometry(QRect(170, 60, 131, 23));
         backTierIssue = new QLabel(carDiagnosticPage);
         backTierIssue->setObjectName("backTierIssue");
-        backTierIssue->setGeometry(QRect(270, 500, 661, 31));
+        backTierIssue->setGeometry(QRect(270, 500, 649, 32));
         QFont font;
         font.setFamilies({QString::fromUtf8("DejaVu Sans")});
         font.setBold(true);
@@ -352,6 +381,21 @@ public:
         backTierIssue->setWordWrap(false);
         backTierIssue->setOpenExternalLinks(false);
         backTierIssue->setTextInteractionFlags(Qt::TextInteractionFlag::TextEditable|Qt::TextInteractionFlag::TextSelectableByKeyboard);
+        lockChecker = new QCheckBox(carDiagnosticPage);
+        lockChecker->setObjectName("lockChecker");
+        lockChecker->setGeometry(QRect(20, 60, 141, 23));
+        lockerButton = new QPushButton(carDiagnosticPage);
+        lockerButton->setObjectName("lockerButton");
+        lockerButton->setGeometry(QRect(740, 80, 100, 50));
+        lockerButton->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"border:none;\n"
+"}"));
+        label_3 = new QLabel(carDiagnosticPage);
+        label_3->setObjectName("label_3");
+        label_3->setGeometry(QRect(490, 260, 100, 100));
+        label_3->setStyleSheet(QString::fromUtf8("QLabel{\n"
+"background-color: rgba(0,0,0,0%)\n"
+"}"));
         entertainmentScreenSwitch->addWidget(carDiagnosticPage);
         preVideoPage = new QWidget();
         preVideoPage->setObjectName("preVideoPage");
@@ -390,9 +434,84 @@ public:
 "border:none;\n"
 "outline: none;\n"
 "}"));
-        pushButton_19 = new QPushButton(videoPage);
-        pushButton_19->setObjectName("pushButton_19");
-        pushButton_19->setGeometry(QRect(20, 470, 89, 25));
+        goBackScreen = new QPushButton(videoPage);
+        goBackScreen->setObjectName("goBackScreen");
+        goBackScreen->setGeometry(QRect(0, 480, 100, 50));
+        goBackScreen->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"    color: rgb(255, 255, 255);\n"
+"    border: none;\n"
+"    padding: 8px;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: rgba(255, 255, 255, 25);\n"
+"}\n"
+"\n"
+"QPushButton:disabled {\n"
+"    color: rgba(255, 255, 255, 128);\n"
+"}\n"
+"\n"
+"QPushButton:!flat {\n"
+"    background-color: rgba(255, 255, 255, 31);\n"
+"}\n"
+"\n"
+"QPushButton:!flat:checked {\n"
+"    color: rgb(0, 0, 0);\n"
+"    background-color: palette(base);\n"
+"}\n"
+"\n"
+"QPushButton:!flat:disabled {\n"
+"    background-color: rgba(255, 255, 255, 13);\n"
+"}"));
+        videoVolume = new QPushButton(videoPage);
+        videoVolume->setObjectName("videoVolume");
+        videoVolume->setGeometry(QRect(728, 430, 40, 40));
+        videoVolume->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"border:none;\n"
+"outline: none;\n"
+"}"));
+        videoDuration0 = new QLabel(videoPage);
+        videoDuration0->setObjectName("videoDuration0");
+        videoDuration0->setGeometry(QRect(358, 440, 60, 17));
+        videoDuration0->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        volumeVideoSlider = new QSlider(videoPage);
+        volumeVideoSlider->setObjectName("volumeVideoSlider");
+        volumeVideoSlider->setGeometry(QRect(768, 430, 100, 40));
+        volumeVideoSlider->setStyleSheet(QString::fromUtf8("QSlider {\n"
+"    from: 1\n"
+"    value: 25\n"
+"    to: 100\n"
+"}"));
+        volumeVideoSlider->setOrientation(Qt::Orientation::Horizontal);
+        videoDuration1 = new QLabel(videoPage);
+        videoDuration1->setObjectName("videoDuration1");
+        videoDuration1->setGeometry(QRect(628, 440, 60, 17));
+        videoDuration1->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        videoSlider = new QSlider(videoPage);
+        videoSlider->setObjectName("videoSlider");
+        videoSlider->setGeometry(QRect(420, 440, 200, 20));
+        videoSlider->setOrientation(Qt::Orientation::Horizontal);
+        videoForwardButton = new QPushButton(videoPage);
+        videoForwardButton->setObjectName("videoForwardButton");
+        videoForwardButton->setGeometry(QRect(540, 385, 40, 40));
+        videoForwardButton->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"border:none;\n"
+"outline: none;\n"
+"}"));
+        playVideoButton = new QPushButton(videoPage);
+        playVideoButton->setObjectName("playVideoButton");
+        playVideoButton->setGeometry(QRect(500, 385, 41, 40));
+        playVideoButton->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"border:none;\n"
+"outline: none;\n"
+"}"));
+        videoBackwardButton = new QPushButton(videoPage);
+        videoBackwardButton->setObjectName("videoBackwardButton");
+        videoBackwardButton->setGeometry(QRect(460, 385, 40, 40));
+        videoBackwardButton->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"border:none;\n"
+"outline: none;\n"
+"}"));
         entertainmentScreenSwitch->addWidget(videoPage);
         Entertainmentscreen->setCentralWidget(centralwidget);
         menubar = new QMenuBar(Entertainmentscreen);
@@ -415,7 +534,7 @@ public:
 
         retranslateUi(Entertainmentscreen);
 
-        entertainmentScreenSwitch->setCurrentIndex(4);
+        entertainmentScreenSwitch->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(Entertainmentscreen);
@@ -442,10 +561,14 @@ public:
         backwardButton->setText(QString());
         shuffleButton->setText(QString());
         musicVolume->setText(QString());
-        audioplayingtitle->setText(QCoreApplication::translate("Entertainmentscreen", "FILE_NAME", nullptr));
-        label->setText(QCoreApplication::translate("Entertainmentscreen", "Audio Playing:", nullptr));
+        label->setText(QCoreApplication::translate("Entertainmentscreen", "Audio Playlist:", nullptr));
         timeDuration0->setText(QCoreApplication::translate("Entertainmentscreen", "00:00:00", nullptr));
         timeDuration1->setText(QCoreApplication::translate("Entertainmentscreen", "00:00:00", nullptr));
+
+        const bool __sortingEnabled = SongList->isSortingEnabled();
+        SongList->setSortingEnabled(false);
+        SongList->setSortingEnabled(__sortingEnabled);
+
         label_2->setText(QCoreApplication::translate("Entertainmentscreen", "0", nullptr));
         pushButton->setText(QCoreApplication::translate("Entertainmentscreen", "C", nullptr));
         pushButton_2->setText(QCoreApplication::translate("Entertainmentscreen", "+/-", nullptr));
@@ -469,11 +592,20 @@ public:
         carPictureButton->setText(QString());
         checkBox->setText(QCoreApplication::translate("Entertainmentscreen", "Tire problems", nullptr));
         backTierIssue->setText(QCoreApplication::translate("Entertainmentscreen", "There's issues with this tier Please go to the Maintenance center to be safe", nullptr));
+        lockChecker->setText(QCoreApplication::translate("Entertainmentscreen", "Lock/Unlock Car", nullptr));
+        lockerButton->setText(QString());
+        label_3->setText(QString());
         videoconmp4->setText(QString());
         homeButtonmp4->setText(QString());
         videoconmp4_2->setText(QString());
         homeButtonmp4_2->setText(QString());
-        pushButton_19->setText(QCoreApplication::translate("Entertainmentscreen", "PushButton", nullptr));
+        goBackScreen->setText(QString());
+        videoVolume->setText(QString());
+        videoDuration0->setText(QCoreApplication::translate("Entertainmentscreen", "00:00:00", nullptr));
+        videoDuration1->setText(QCoreApplication::translate("Entertainmentscreen", "00:00:00", nullptr));
+        videoForwardButton->setText(QString());
+        playVideoButton->setText(QString());
+        videoBackwardButton->setText(QString());
         menuentertainmentscreen->setTitle(QCoreApplication::translate("Entertainmentscreen", "NeuroDrive", nullptr));
         menuOpen->setTitle(QCoreApplication::translate("Entertainmentscreen", "Open", nullptr));
     } // retranslateUi

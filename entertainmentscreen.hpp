@@ -76,6 +76,7 @@ enum{
     lightMode
 }theme_modes;
 
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class Entertainmentscreen;
@@ -108,7 +109,10 @@ public:
     QAudioOutput *audioOutput = new QAudioOutput();
     //QString playlistFile = ":/mp3/media.mp3";
     QAudioDevice audioDevice = QMediaDevices::defaultAudioOutput(); // Get the default device
-
+    std::vector<QString> musicplaylist = {"/media/yasso/yasso2/Embedded Systems/grad project/qt/InfotainmentQt-draft2/media/mp3Songs/HabibyLeeh.mp3"
+                                          ,"/media/yasso/yasso2/Embedded Systems/grad project/qt/InfotainmentQt-draft2/media/mp3Songs/LeehBENKHABYWMSHBEN2OL.mp3",
+                                          "/media/yasso/yasso2/Embedded Systems/grad project/qt/InfotainmentQt-draft2/media/mp3Songs/MATEGYA3ADY3LEKY.mp3"};
+    QStringList musicplaylistName = {"TUL8TE - Habiby Leeh", "TUL8TE - MATEGY A3ADY 3LEKY", "TUL8TE - Leeh BENKHABY W MSH BEN2OL"};
 private slots:
     /******************************************************************************************************************************/
     /*************************************************    Generic     ************************************************************/
@@ -128,7 +132,7 @@ private slots:
     /***************************************************************************************************************************/
 
     void handleMusicButtonPress();
-    void handleSongListSelection();
+    void handleSongListSelection(QListWidgetItem* item);
     void onSongUpdate();
     void startSong();
     void refreshSongList();
@@ -182,6 +186,7 @@ private slots:
     /*****************************************************************************************************************************/
     void showCarScreen();
     void showTireDiagnostics();
+    void lockCar();
     /*****************************************************************************************************************************/
     /****************************************************************************************************************************/
     /*****************************************************************************************************************************/

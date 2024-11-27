@@ -8,6 +8,9 @@
 	<file>media/backward_icon.svg</file>
 	<file>media/volume_up-24px.svg</file>
 	<file>media/volume_off-24px.svg</file>
-	<file>media/HabibyLeeh.mp3</file>
+	<file>media/mp3Songs/HabibyLeeh.mp3</file>
+	<file>media/mp3Songs/MATEGYA3ADY3LEKY.mp3</file>
+	<file>media/mp3Songs/LeehBENKHABYWMSHBEN2OL.mp3</file>
+	
     </qresource>
 </RCC>

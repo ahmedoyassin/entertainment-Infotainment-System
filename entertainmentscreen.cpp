@@ -50,7 +50,9 @@ Entertainmentscreen::Entertainmentscreen(QWidget *parent)
     connect(ui->startButton,SIGNAL(clicked()),SLOT(navigateToHome()));
 
     ui->startButton->setIcon(QIcon(":/home_page/media/startButton.png"));
-    ui->startButton->setIconSize(QSize(200,200));
+    ui->startButton->setIconSize(QSize(250,250));
+    ui->startButton->setAutoFillBackground(false);
+
     /***************************************************************************/
     /************************* Home Pages Buttons *****************************/
     /*************************************************************************/
@@ -68,7 +70,7 @@ Entertainmentscreen::Entertainmentscreen(QWidget *parent)
     connect(ui->mp3Button, SIGNAL(clicked()), SLOT(handleMusicButtonPress()));
     connect(ui->mp4Button, SIGNAL(clicked()), SLOT(handleVideoButtonPress()));
 
-    connect(ui->homeButtonmp4, SIGNAL(clicked()), SLOT(navigateToHome()));
+
 
    /***************************************************************************/
 
@@ -80,15 +82,17 @@ Entertainmentscreen::Entertainmentscreen(QWidget *parent)
     /*************************************************************************/
 
     audioOutput->setDevice(audioDevice); // Set the device
-    musicPlayer->setSource(QUrl::fromLocalFile("/media/yasso/yasso2/Embedded Systems/grad project/qt/InfotainmentQt-draft2/media/HabibyLeeh.mp3"));
     ui->volumeSlider->setSliderPosition(defaultVolume);
     audioOutput->setVolume(static_cast<float> (defaultVolume)/100.00f);
     musicPlayer->setAudioOutput(audioOutput);
     connect(musicPlayer,SIGNAL(positionChanged(qint64)), SLOT(refreshPosition()));
     connect(ui->musicSlider, SIGNAL(sliderReleased()),SLOT(refreshDuration()));
-    connect(musicPlayer, SIGNAL(audioOutputChanged()),SLOT(resetSong()));
+    connect(musicPlayer, SIGNAL(audioOutputChanged()),SLOT(handleForwardButtonPress()));
     ui->musicSlider->setMaximum(100);
-
+    ui->SongList->addItems(musicplaylistName);
+    connect(ui->SongList, SIGNAL(itemDoubleClicked(QListWidgetItem*)), SLOT(handleSongListSelection(QListWidgetItem*)));
+    connect(ui->forwardButton, SIGNAL(clicked()), SLOT(handleForwardButtonPress()));
+    connect(ui->backwardButton, SIGNAL(clicked()), SLOT(handleBackwardButtonPress()));
 
     ui->pausecontinueButton->setIcon(QIcon(":/mp3/media/play_icon.svg"));
     ui->pausecontinueButton->setIconSize(QSize(90,40));
@@ -125,8 +129,23 @@ Entertainmentscreen::Entertainmentscreen(QWidget *parent)
     /************************* Video Pages Buttons ****************************/
     /*************************************************************************/
 
+    ui->playVideoButton->setIcon(QIcon(":/mp3/media/play_icon.svg"));
+    ui->playVideoButton->setIconSize(QSize(90,40));
+    connect(ui->playVideoButton, SIGNAL(clicked()), SLOT(handlePlayButtonPress()));
+    ui->videoForwardButton->setIcon(QIcon(":/mp3/media/forward_icon.svg"));
+    ui->videoForwardButton->setIconSize(QSize(90,40));
+    connect(ui->videoForwardButton, SIGNAL(clicked()), SLOT(handleForwardButtonPress()));
+    ui->videoBackwardButton->setIcon(QIcon(":/mp3/media/backward_icon.svg"));
+    ui->videoBackwardButton->setIconSize(QSize(90,40));
+    connect(ui->videoForwardButton, SIGNAL(clicked()), SLOT(handleBackwardButtonPress()));
+
+    ui->videoVolume->setIcon(QIcon(":/mp3/media/volume_up-24px.svg"));
+    ui->videoVolume->setIconSize(QSize(90,40));
+    connect(ui->volumeSlider, SIGNAL(actionTriggered(int)), SLOT(handleVolumeSlider()));
 
 
+    connect(ui->homeButtonmp4, SIGNAL(clicked()), SLOT(navigateToHome()));
+    connect(ui->homeButtonmp4_2, SIGNAL(clicked()), SLOT(navigateToHome()));
     /***************************************************************************/
     /*********************** Diagnostics Pages Buttons ************************/
     /*************************************************************************/
@@ -135,7 +154,9 @@ Entertainmentscreen::Entertainmentscreen(QWidget *parent)
     connect(ui->carDiagnosticsButton, SIGNAL(clicked(bool)), SLOT(showCarScreen()));
     ui->backTierIssue->hide();
     connect(ui->checkBox, SIGNAL(clicked(bool)), SLOT(showTireDiagnostics()));
-
+    connect(ui->lockChecker, SIGNAL(clicked(bool)), SLOT(lockCar()));
+    ui->lockerButton->setIcon(QIcon(":/carDiagnostics/media/padlock-unlock.png"));
+    ui->lockerButton->setIconSize(QSize(90,40));
 }
 
 Entertainmentscreen::~Entertainmentscreen(){   delete ui;  }

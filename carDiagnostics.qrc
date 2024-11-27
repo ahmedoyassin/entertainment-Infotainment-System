@@ -1,5 +1,8 @@
 <RCC>
     <qresource prefix="/carDiagnostics">
 	<file>media/carPicture.jpg</file>
+	<file>media/directions_car-24px.svg</file>
+	<file>media/padlock.png</file>
+	<file>media/padlock-unlock.png</file>
     </qresource>
 </RCC>

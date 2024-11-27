@@ -20,3 +20,15 @@ void Entertainmentscreen:: showTireDiagnostics(){
         boxTireChecked = 0;
     }
 }
+
+void Entertainmentscreen:: lockCar(){
+    static int lockCarFlag = 0;
+    if(lockCarFlag == 0){
+        ui->lockerButton->setIcon(QIcon(":/carDiagnostics/media/padlock.png"));
+        lockCarFlag = 1;}
+    else{
+        ui->lockerButton->setIcon(QIcon(":/carDiagnostics/media/padlock-unlock.png"));
+        lockCarFlag = 0;
+    }
+
+}

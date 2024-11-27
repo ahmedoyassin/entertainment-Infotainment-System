@@ -1281,8 +1281,10 @@ qrc_mp3.cpp: ../../mp3.qrc \
 		../../media/shuffle_icon.png \
 		../../media/forward_icon.svg \
 		../../media/volume_up-24px.svg \
-		../../media/HabibyLeeh.mp3 \
-		../../media/play_icon.svg
+		../../media/play_icon.svg \
+		../../media/mp3Songs/LeehBENKHABYWMSHBEN2OL.mp3 \
+		../../media/mp3Songs/MATEGYA3ADY3LEKY.mp3 \
+		../../media/mp3Songs/HabibyLeeh.mp3
 	/home/yasso/Qt/6.7.2/gcc_64/libexec/rcc -name mp3 --no-zstd ../../mp3.qrc -o qrc_mp3.cpp
 
 qrc_mp4.cpp: ../../mp4.qrc \
@@ -1303,7 +1305,10 @@ qrc_bluetooth.cpp: ../../bluetooth.qrc \
 
 qrc_carDiagnostics.cpp: ../../carDiagnostics.qrc \
 		/home/yasso/Qt/6.7.2/gcc_64/libexec/rcc \
-		../../media/carPicture.jpg
+		../../media/padlock-unlock.png \
+		../../media/padlock.png \
+		../../media/carPicture.jpg \
+		../../media/directions_car-24px.svg
 	/home/yasso/Qt/6.7.2/gcc_64/libexec/rcc -name carDiagnostics --no-zstd ../../carDiagnostics.qrc -o qrc_carDiagnostics.cpp
 
 compiler_moc_predefs_make_all: moc_predefs.h
@@ -1577,6 +1582,9 @@ moc_entertainmentscreen.cpp: ../../entertainmentscreen.hpp \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/QAction \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QApplication \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qapplication.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QCheckBox \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qcheckbox.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qabstractbutton.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QLabel \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qlabel.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qpicture.h \
@@ -1587,7 +1595,6 @@ moc_entertainmentscreen.cpp: ../../entertainmentscreen.hpp \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qmenubar.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QPushButton \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qpushbutton.h \
-		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qabstractbutton.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QSlider \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QStackedWidget \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qstackedwidget.h \
@@ -1881,6 +1888,9 @@ main.o: ../../main.cpp ../../entertainmentscreen.hpp \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/QAction \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QApplication \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qapplication.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QCheckBox \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qcheckbox.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qabstractbutton.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QLabel \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qlabel.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qpicture.h \
@@ -1891,7 +1901,6 @@ main.o: ../../main.cpp ../../entertainmentscreen.hpp \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qmenubar.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QPushButton \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qpushbutton.h \
-		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qabstractbutton.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QSlider \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QStackedWidget \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qstackedwidget.h \
@@ -2162,6 +2171,9 @@ entertainmentscreen.o: ../../entertainmentscreen.cpp ../../entertainmentscreen.h
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/QAction \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QApplication \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qapplication.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QCheckBox \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qcheckbox.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qabstractbutton.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QLabel \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qlabel.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qpicture.h \
@@ -2172,7 +2184,6 @@ entertainmentscreen.o: ../../entertainmentscreen.cpp ../../entertainmentscreen.h
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qmenubar.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QPushButton \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qpushbutton.h \
-		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qabstractbutton.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QSlider \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QStackedWidget \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qstackedwidget.h \
@@ -2448,6 +2459,9 @@ mp3.o: ../../mp3.cpp ../../entertainmentscreen.hpp \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/QAction \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QApplication \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qapplication.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QCheckBox \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qcheckbox.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qabstractbutton.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QLabel \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qlabel.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qpicture.h \
@@ -2458,7 +2472,6 @@ mp3.o: ../../mp3.cpp ../../entertainmentscreen.hpp \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qmenubar.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QPushButton \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qpushbutton.h \
-		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qabstractbutton.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QSlider \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QStackedWidget \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qstackedwidget.h \
@@ -2729,6 +2742,9 @@ mp4.o: ../../mp4.cpp ../../entertainmentscreen.hpp \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/QAction \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QApplication \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qapplication.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QCheckBox \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qcheckbox.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qabstractbutton.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QLabel \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qlabel.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qpicture.h \
@@ -2739,7 +2755,6 @@ mp4.o: ../../mp4.cpp ../../entertainmentscreen.hpp \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qmenubar.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QPushButton \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qpushbutton.h \
-		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qabstractbutton.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QSlider \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QStackedWidget \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qstackedwidget.h \
@@ -3013,6 +3028,9 @@ bluetooth.o: ../../bluetooth.cpp ../../entertainmentscreen.hpp \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/QAction \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QApplication \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qapplication.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QCheckBox \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qcheckbox.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qabstractbutton.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QLabel \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qlabel.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qpicture.h \
@@ -3023,7 +3041,6 @@ bluetooth.o: ../../bluetooth.cpp ../../entertainmentscreen.hpp \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qmenubar.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QPushButton \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qpushbutton.h \
-		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qabstractbutton.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QSlider \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QStackedWidget \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qstackedwidget.h \
@@ -3294,6 +3311,9 @@ settings.o: ../../settings.cpp ../../entertainmentscreen.hpp \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/QAction \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QApplication \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qapplication.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QCheckBox \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qcheckbox.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qabstractbutton.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QLabel \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qlabel.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qpicture.h \
@@ -3304,7 +3324,6 @@ settings.o: ../../settings.cpp ../../entertainmentscreen.hpp \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qmenubar.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QPushButton \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qpushbutton.h \
-		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qabstractbutton.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QSlider \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QStackedWidget \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qstackedwidget.h \
@@ -3575,6 +3594,9 @@ carDiagnostics.o: ../../carDiagnostics.cpp ../../entertainmentscreen.hpp \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/QAction \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QApplication \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qapplication.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QCheckBox \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qcheckbox.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qabstractbutton.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QLabel \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qlabel.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qpicture.h \
@@ -3585,7 +3607,6 @@ carDiagnostics.o: ../../carDiagnostics.cpp ../../entertainmentscreen.hpp \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qmenubar.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QPushButton \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qpushbutton.h \
-		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qabstractbutton.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QSlider \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QStackedWidget \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qstackedwidget.h \

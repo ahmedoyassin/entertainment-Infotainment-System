@@ -2,7 +2,8 @@
 
 
 int playingSongFlag = 0;
-
+int chosenSong = 0;
+QListWidgetItem currentItemSelected;
 /*****************************************************************************************************************************/
 /*************************************************    MP3    ****************************************************************/
 /***************************************************************************************************************************/
@@ -14,22 +15,16 @@ void Entertainmentscreen:: handleMusicButtonPress(){
     ui->homeButtonmp3->setIcon(QIcon(":/home_page/media/home_icon.png"));
     ui->homeButtonmp3->setIconSize(QSize(100,50));
 }
-void Entertainmentscreen:: handleSongListSelection(){
-    // int currentSongsNumber, start,end;
-    // std::string songsListCount, songsList, songPath,songName;
-    // currentSongsNumber = ui->runningSongsList->count();
-    // if(songsListCount == '0'){
-    //     ui->runningSongsList->hide();
-    // //
-    // }
-    // else{
-    //     ui->runningSongsList->show();
-    //     start = 0;
-    //     while(start < songsList.length()){
-
-    //     }
-    // }
+void Entertainmentscreen:: handleSongListSelection(QListWidgetItem* item){
+    chosenSong = ui->SongList->row(item);
+    if(chosenSong <= musicplaylistName.size() && chosenSong >= 0){
+    musicPlayer->setSource(QUrl(musicplaylist.at(chosenSong-1)));
+    musicPlayer->play();
+    }
+    refreshPosition();
+    ui->pausecontinueButton->setIcon(QIcon(":/mp3/media/pause_icon.svg"));
 }
+
 void Entertainmentscreen:: onSongUpdate(){
 
 }
@@ -61,9 +56,21 @@ void Entertainmentscreen:: handlePlayButtonPress(){
         //musicPlayer->setPosition(1000*60);
         musicPlayer->pause();
     }
+
 }
 void Entertainmentscreen:: handleForwardButtonPress(){
-
+    chosenSong++;
+    if(chosenSong <= musicplaylistName.capacity() && chosenSong >= 0){
+        musicPlayer->setSource(QUrl(musicplaylist.at(chosenSong-1)));
+        musicPlayer->play();
+    }
+    else {
+        resetSong();
+        chosenSong = 1;
+        musicPlayer->setSource(QUrl(musicplaylist.at(chosenSong-1)));
+        musicPlayer->play();
+    }
+    refreshPosition();
 }
 void Entertainmentscreen:: handleBackwardButtonPress(){
 
@@ -92,7 +99,7 @@ void Entertainmentscreen:: refreshDuration(){
     //durationCounter++;
 }
 void Entertainmentscreen:: refreshPosition(){
-    static qint64 Mduration = musicPlayer->duration()/1000;
+    qint64 Mduration = musicPlayer->duration()/1000;
     ui->musicSlider->setMaximum(static_cast<float>(Mduration));
     ui->musicSlider->setSliderPosition(static_cast<float>(musicPlayer->position())/1000.00);
     QTime currentTimeDuration((musicPlayer->position()/3600000)%60,(musicPlayer->position()/60000)%60, (musicPlayer->position()/1000)%60, (musicPlayer->position())%1000);
@@ -106,6 +113,9 @@ void Entertainmentscreen:: refreshPosition(){
     ui->timeDuration0->setText(currentTimeDuration.toString(format));
 }
 void Entertainmentscreen:: resetSong(){
+    chosenSong = 1;
     ui->musicSlider->setSliderPosition(0);
+    musicPlayer->setSource(QUrl(musicplaylist.at(chosenSong-1)));
+
     handlePlayButtonPress();
 }
