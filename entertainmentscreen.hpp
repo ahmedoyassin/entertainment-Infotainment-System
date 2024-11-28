@@ -49,9 +49,8 @@ enum{
     carDiagnosticsPageIndex,
     preVideoPageIndex,
     videoPageIndex,
-    bluetoothPageIndex,
     settingsPageIndex,
-    videoDetailsPageIndex
+    bluetoothPageIndex
 }page_indices;
 
 enum{
@@ -76,6 +75,10 @@ enum{
     lightMode
 }theme_modes;
 
+enum{
+    Locked = 0,
+    Unlocked
+}carLockingSystem;
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -107,12 +110,20 @@ public:
     //QMediaPlaylist *playList = new QMediaPlaylist;
     QMediaPlayer *musicPlayer = new QMediaPlayer;
     QAudioOutput *audioOutput = new QAudioOutput();
-    //QString playlistFile = ":/mp3/media.mp3";
     QAudioDevice audioDevice = QMediaDevices::defaultAudioOutput(); // Get the default device
+
     std::vector<QString> musicplaylist = {"/media/yasso/yasso2/Embedded Systems/grad project/qt/InfotainmentQt-draft2/media/mp3Songs/HabibyLeeh.mp3"
-                                          ,"/media/yasso/yasso2/Embedded Systems/grad project/qt/InfotainmentQt-draft2/media/mp3Songs/LeehBENKHABYWMSHBEN2OL.mp3",
-                                          "/media/yasso/yasso2/Embedded Systems/grad project/qt/InfotainmentQt-draft2/media/mp3Songs/MATEGYA3ADY3LEKY.mp3"};
+                                          , "/media/yasso/yasso2/Embedded Systems/grad project/qt/InfotainmentQt-draft2/media/mp3Songs/MATEGYA3ADY3LEKY.mp3"
+                                          , "/media/yasso/yasso2/Embedded Systems/grad project/qt/InfotainmentQt-draft2/media/mp3Songs/LeehBENKHABYWMSHBEN2OL.mp3"
+                                          };
     QStringList musicplaylistName = {"TUL8TE - Habiby Leeh", "TUL8TE - MATEGY A3ADY 3LEKY", "TUL8TE - Leeh BENKHABY W MSH BEN2OL"};
+    std::vector<QString> videoPlaylist = {"/media/yasso/yasso2/Embedded Systems/grad project/qt/InfotainmentQt-draft2/media/mp4Video/E01.mp4"
+                                          , "/media/yasso/yasso2/Embedded Systems/grad project/qt/InfotainmentQt-draft2/media/mp4Video/E02.mp4"
+                                          , "/media/yasso/yasso2/Embedded Systems/grad project/qt/InfotainmentQt-draft2/media/mp4Video/E03.mp4"
+                                          , "/media/yasso/yasso2/Embedded Systems/grad project/qt/InfotainmentQt-draft2/media/mp4Video/E04.mp4"
+                                          , "/media/yasso/yasso2/Embedded Systems/grad project/qt/InfotainmentQt-draft2/media/mp4Video/E05.mp4"
+                                          , "/media/yasso/yasso2/Embedded Systems/grad project/qt/InfotainmentQt-draft2/media/mp4Video/E06.mp4"};
+    QStringList videoPlaylistName = {"E01", "E02", "E03", "E04", "E05", "E06"};
 private slots:
     /******************************************************************************************************************************/
     /*************************************************    Generic     ************************************************************/
@@ -162,6 +173,7 @@ private slots:
     void handleVideoVolumeUpPress();
     void startVideo();
     void haltVideo();
+    void goBackPreVideoScreen();
 
     /*****************************************************************************************************************************/
     /*************************************************    Bluetooth    **********************************************************/
@@ -191,6 +203,8 @@ private slots:
     /****************************************************************************************************************************/
     /*****************************************************************************************************************************/
 
+
+    //void on_actionOpen_File_Here_triggered();
 
 private:
     Ui::Entertainmentscreen *ui;

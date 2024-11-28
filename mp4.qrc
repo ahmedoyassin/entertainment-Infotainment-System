@@ -8,6 +8,9 @@
 	<file>media/volume_up-24px.svg</file>
 	<file>media/volume_off-24px.svg</file>
 	<file>media/video_icon.png</file>
-	
+	<file>media/mp4Video/E01.mp4</file>
+	<file>media/mp4Video/E02.mp4</file>
+	<file>media/mp4Video/E03.mp4</file>
+
     </qresource>
 </RCC>

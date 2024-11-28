@@ -2,17 +2,20 @@
 
 extern int playingSongFlag;
 int playingVideoFlag = 0;
+int chosenVideo = 0;
+extern int currentIndex;
 
 /*****************************************************************************************************************************/
 /*************************************************    MP4    ****************************************************************/
 /***************************************************************************************************************************/
 
 void Entertainmentscreen:: handleVideoButtonPress(){
-    ui->entertainmentScreenSwitch->setCurrentIndex(videoPageIndex);
+    ui->entertainmentScreenSwitch->setCurrentIndex(preVideoPageIndex);
     ui->videoconmp4->setIcon(QIcon(":/home_page/media/video_icon.png"));
     ui->videoconmp4->setIconSize(QSize(80,40));
     ui->homeButtonmp4->setIcon(QIcon(":/home_page/media/home_icon.png"));
     ui->homeButtonmp4->setIconSize(QSize(100,50));
+    currentIndex = preVideoPageIndex;
 }
 
 void Entertainmentscreen:: refreshVideoList(){
@@ -51,4 +54,8 @@ void Entertainmentscreen:: startVideo(){
 }
 void Entertainmentscreen:: haltVideo(){
 
+}
+
+void Entertainmentscreen:: goBackPreVideoScreen(){
+    ui->entertainmentScreenSwitch->setCurrentIndex(preVideoPageIndex);
 }

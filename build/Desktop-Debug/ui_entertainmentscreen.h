@@ -13,6 +13,7 @@
 #include <QtGui/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QCheckBox>
+#include <QtWidgets/QGraphicsView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QListWidget>
 #include <QtWidgets/QMainWindow>
@@ -84,11 +85,12 @@ public:
     QCheckBox *checkBox;
     QLabel *backTierIssue;
     QCheckBox *lockChecker;
-    QPushButton *lockerButton;
+    QPushButton *homeButtonDiagnostics;
     QLabel *label_3;
     QWidget *preVideoPage;
     QPushButton *videoconmp4;
     QPushButton *homeButtonmp4;
+    QListWidget *videoList;
     QWidget *videoPage;
     QPushButton *videoconmp4_2;
     QPushButton *homeButtonmp4_2;
@@ -101,6 +103,16 @@ public:
     QPushButton *videoForwardButton;
     QPushButton *playVideoButton;
     QPushButton *videoBackwardButton;
+    QGraphicsView *graphicsView;
+    QWidget *settingsPage;
+    QLabel *label_4;
+    QLabel *label_5;
+    QLabel *label_6;
+    QLabel *dateText_2;
+    QPushButton *darkLightMode_2;
+    QPushButton *homeButtonSettings;
+    QPushButton *settingsIcon;
+    QLabel *timeText_2;
     QMenuBar *menubar;
     QMenu *menuentertainmentscreen;
     QMenu *menuOpen;
@@ -208,7 +220,7 @@ public:
         musicPage->setObjectName("musicPage");
         musicIconmp3 = new QPushButton(musicPage);
         musicIconmp3->setObjectName("musicIconmp3");
-        musicIconmp3->setGeometry(QRect(25, 80, 80, 40));
+        musicIconmp3->setGeometry(QRect(20, 40, 80, 40));
         musicIconmp3->setStyleSheet(QString::fromUtf8("QPushButton{\n"
 "border:none;\n"
 "}"));
@@ -270,7 +282,7 @@ public:
         musicSlider->setOrientation(Qt::Orientation::Horizontal);
         label = new QLabel(musicPage);
         label->setObjectName("label");
-        label->setGeometry(QRect(90, 40, 101, 17));
+        label->setGeometry(QRect(70, 120, 101, 17));
         timeDuration0 = new QLabel(musicPage);
         timeDuration0->setObjectName("timeDuration0");
         timeDuration0->setGeometry(QRect(350, 455, 60, 17));
@@ -282,7 +294,7 @@ public:
         SongList = new QListWidget(musicPage);
         new QListWidgetItem(SongList);
         SongList->setObjectName("SongList");
-        SongList->setGeometry(QRect(140, 60, 321, 81));
+        SongList->setGeometry(QRect(123, 150, 700, 241));
         entertainmentScreenSwitch->addWidget(musicPage);
         calcolatorPage = new QWidget();
         calcolatorPage->setObjectName("calcolatorPage");
@@ -384,18 +396,12 @@ public:
         lockChecker = new QCheckBox(carDiagnosticPage);
         lockChecker->setObjectName("lockChecker");
         lockChecker->setGeometry(QRect(20, 60, 141, 23));
-        lockerButton = new QPushButton(carDiagnosticPage);
-        lockerButton->setObjectName("lockerButton");
-        lockerButton->setGeometry(QRect(740, 80, 100, 50));
-        lockerButton->setStyleSheet(QString::fromUtf8("QPushButton{\n"
-"border:none;\n"
-"}"));
+        homeButtonDiagnostics = new QPushButton(carDiagnosticPage);
+        homeButtonDiagnostics->setObjectName("homeButtonDiagnostics");
+        homeButtonDiagnostics->setGeometry(QRect(20, 480, 60, 40));
         label_3 = new QLabel(carDiagnosticPage);
         label_3->setObjectName("label_3");
-        label_3->setGeometry(QRect(490, 260, 100, 100));
-        label_3->setStyleSheet(QString::fromUtf8("QLabel{\n"
-"background-color: rgba(0,0,0,0%)\n"
-"}"));
+        label_3->setGeometry(QRect(900, 60, 64, 64));
         entertainmentScreenSwitch->addWidget(carDiagnosticPage);
         preVideoPage = new QWidget();
         preVideoPage->setObjectName("preVideoPage");
@@ -415,6 +421,10 @@ public:
 "border:none;\n"
 "outline: none;\n"
 "}"));
+        videoList = new QListWidget(preVideoPage);
+        new QListWidgetItem(videoList);
+        videoList->setObjectName("videoList");
+        videoList->setGeometry(QRect(100, 200, 700, 241));
         entertainmentScreenSwitch->addWidget(preVideoPage);
         videoPage = new QWidget();
         videoPage->setObjectName("videoPage");
@@ -512,7 +522,70 @@ public:
 "border:none;\n"
 "outline: none;\n"
 "}"));
+        graphicsView = new QGraphicsView(videoPage);
+        graphicsView->setObjectName("graphicsView");
+        graphicsView->setGeometry(QRect(0, 0, 1024, 600));
         entertainmentScreenSwitch->addWidget(videoPage);
+        graphicsView->raise();
+        videoconmp4_2->raise();
+        homeButtonmp4_2->raise();
+        goBackScreen->raise();
+        videoVolume->raise();
+        videoDuration0->raise();
+        volumeVideoSlider->raise();
+        videoDuration1->raise();
+        videoSlider->raise();
+        videoForwardButton->raise();
+        playVideoButton->raise();
+        videoBackwardButton->raise();
+        settingsPage = new QWidget();
+        settingsPage->setObjectName("settingsPage");
+        label_4 = new QLabel(settingsPage);
+        label_4->setObjectName("label_4");
+        label_4->setGeometry(QRect(60, 120, 124, 37));
+        QFont font1;
+        font1.setPointSize(25);
+        label_4->setFont(font1);
+        label_5 = new QLabel(settingsPage);
+        label_5->setObjectName("label_5");
+        label_5->setGeometry(QRect(140, 180, 185, 24));
+        QFont font2;
+        font2.setPointSize(16);
+        label_5->setFont(font2);
+        label_6 = new QLabel(settingsPage);
+        label_6->setObjectName("label_6");
+        label_6->setGeometry(QRect(140, 230, 117, 24));
+        label_6->setFont(font2);
+        dateText_2 = new QLabel(settingsPage);
+        dateText_2->setObjectName("dateText_2");
+        dateText_2->setGeometry(QRect(450, 230, 150, 20));
+        darkLightMode_2 = new QPushButton(settingsPage);
+        darkLightMode_2->setObjectName("darkLightMode_2");
+        darkLightMode_2->setGeometry(QRect(500, 180, 60, 25));
+        darkLightMode_2->setAutoFillBackground(false);
+        darkLightMode_2->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"	border:none;\n"
+"}"));
+        homeButtonSettings = new QPushButton(settingsPage);
+        homeButtonSettings->setObjectName("homeButtonSettings");
+        homeButtonSettings->setGeometry(QRect(462, 480, 100, 50));
+        homeButtonSettings->setAutoFillBackground(false);
+        homeButtonSettings->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"background-color: #4caf50;\n"
+"color: white;\n"
+"border:none;\n"
+"outline: none;\n"
+"}"));
+        settingsIcon = new QPushButton(settingsPage);
+        settingsIcon->setObjectName("settingsIcon");
+        settingsIcon->setGeometry(QRect(25, 60, 80, 40));
+        settingsIcon->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"border:none;\n"
+"}"));
+        timeText_2 = new QLabel(settingsPage);
+        timeText_2->setObjectName("timeText_2");
+        timeText_2->setGeometry(QRect(600, 230, 80, 17));
+        entertainmentScreenSwitch->addWidget(settingsPage);
         Entertainmentscreen->setCentralWidget(centralwidget);
         menubar = new QMenuBar(Entertainmentscreen);
         menubar->setObjectName("menubar");
@@ -534,7 +607,7 @@ public:
 
         retranslateUi(Entertainmentscreen);
 
-        entertainmentScreenSwitch->setCurrentIndex(2);
+        entertainmentScreenSwitch->setCurrentIndex(4);
 
 
         QMetaObject::connectSlotsByName(Entertainmentscreen);
@@ -593,10 +666,15 @@ public:
         checkBox->setText(QCoreApplication::translate("Entertainmentscreen", "Tire problems", nullptr));
         backTierIssue->setText(QCoreApplication::translate("Entertainmentscreen", "There's issues with this tier Please go to the Maintenance center to be safe", nullptr));
         lockChecker->setText(QCoreApplication::translate("Entertainmentscreen", "Lock/Unlock Car", nullptr));
-        lockerButton->setText(QString());
+        homeButtonDiagnostics->setText(QString());
         label_3->setText(QString());
         videoconmp4->setText(QString());
         homeButtonmp4->setText(QString());
+
+        const bool __sortingEnabled1 = videoList->isSortingEnabled();
+        videoList->setSortingEnabled(false);
+        videoList->setSortingEnabled(__sortingEnabled1);
+
         videoconmp4_2->setText(QString());
         homeButtonmp4_2->setText(QString());
         goBackScreen->setText(QString());
@@ -606,6 +684,14 @@ public:
         videoForwardButton->setText(QString());
         playVideoButton->setText(QString());
         videoBackwardButton->setText(QString());
+        label_4->setText(QCoreApplication::translate("Entertainmentscreen", "Settings", nullptr));
+        label_5->setText(QCoreApplication::translate("Entertainmentscreen", "Enable Dark Theme", nullptr));
+        label_6->setText(QCoreApplication::translate("Entertainmentscreen", "Time & Date", nullptr));
+        dateText_2->setText(QString());
+        darkLightMode_2->setText(QString());
+        homeButtonSettings->setText(QString());
+        settingsIcon->setText(QString());
+        timeText_2->setText(QString());
         menuentertainmentscreen->setTitle(QCoreApplication::translate("Entertainmentscreen", "NeuroDrive", nullptr));
         menuOpen->setTitle(QCoreApplication::translate("Entertainmentscreen", "Open", nullptr));
     } // retranslateUi

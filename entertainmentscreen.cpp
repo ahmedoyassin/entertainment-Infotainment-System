@@ -7,10 +7,10 @@
 // Constants for command status
 constexpr int commandSuccess = 0;
 /* General Variables */
-int currentIndex = 0;
+int currentIndex;
 /* Multimedia Variables */
 int flashStatus = flashNotDetected;
-
+int darkThemeFlag = darkMode;
 std::string usbName, usbPath;
 
 /* Music Variables */
@@ -35,10 +35,11 @@ Entertainmentscreen::Entertainmentscreen(QWidget *parent)
     connect(timer,SIGNAL(timeout()),this,SLOT(refreshTime()));
     timer->start();
     startPage();
+
     /****************************************************************************/
     /**************************** Background Setup *****************************/
     /**************************************************************************/
-    Entertainmentscreen::setStyleSheet("background:url(:/mainBG/media/darkmodebackground.jpeg)");
+    Entertainmentscreen::setStyleSheet("background:url(:/home_page/media/1024x600-black-solid-color-background.jpg)");
     ui->darkLightMode->setIcon(QIcon(":/home_page/media/darkThemeOn_icon.png"));
     ui->darkLightMode->setIconSize(QSize(50,20));
 
@@ -72,11 +73,6 @@ Entertainmentscreen::Entertainmentscreen(QWidget *parent)
 
 
 
-   /***************************************************************************/
-
-
-
-
     /***************************************************************************/
     /************************* Music Pages Buttons ****************************/
     /*************************************************************************/
@@ -89,6 +85,7 @@ Entertainmentscreen::Entertainmentscreen(QWidget *parent)
     connect(ui->musicSlider, SIGNAL(sliderReleased()),SLOT(refreshDuration()));
     connect(musicPlayer, SIGNAL(audioOutputChanged()),SLOT(handleForwardButtonPress()));
     ui->musicSlider->setMaximum(100);
+    ui->SongList->clear();
     ui->SongList->addItems(musicplaylistName);
     connect(ui->SongList, SIGNAL(itemDoubleClicked(QListWidgetItem*)), SLOT(handleSongListSelection(QListWidgetItem*)));
     connect(ui->forwardButton, SIGNAL(clicked()), SLOT(handleForwardButtonPress()));
@@ -99,10 +96,8 @@ Entertainmentscreen::Entertainmentscreen(QWidget *parent)
     connect(ui->pausecontinueButton, SIGNAL(clicked()), SLOT(handlePlayButtonPress()));
     ui->forwardButton->setIcon(QIcon(":/mp3/media/forward_icon.svg"));
     ui->forwardButton->setIconSize(QSize(90,40));
-    connect(ui->forwardButton, SIGNAL(clicked()), SLOT(handleForwardButtonPress()));
     ui->backwardButton->setIcon(QIcon(":/mp3/media/backward_icon.svg"));
     ui->backwardButton->setIconSize(QSize(90,40));
-    connect(ui->forwardButton, SIGNAL(clicked()), SLOT(handleBackwardButtonPress()));
     ui->shuffleButton->setIcon(QIcon(":/mp3/media/shuffle_icon.png"));
     ui->shuffleButton->setIconSize(QSize(90,40));
     connect(ui->shuffleButton, SIGNAL(clicked()), SLOT(handleShuffleButtonPress()));
@@ -137,12 +132,19 @@ Entertainmentscreen::Entertainmentscreen(QWidget *parent)
     connect(ui->videoForwardButton, SIGNAL(clicked()), SLOT(handleForwardButtonPress()));
     ui->videoBackwardButton->setIcon(QIcon(":/mp3/media/backward_icon.svg"));
     ui->videoBackwardButton->setIconSize(QSize(90,40));
-    connect(ui->videoForwardButton, SIGNAL(clicked()), SLOT(handleBackwardButtonPress()));
-
+    connect(ui->videoBackwardButton, SIGNAL(clicked()), SLOT(handleBackwardButtonPress()));
+    ui->videoList->clear();
+    ui->videoList->addItems(videoPlaylistName);
+    ui->goBackScreen->setIcon(QIcon(":/mp4/media/goBack.svg"));
+    ui->goBackScreen->setIconSize(QSize(90,40));
+    connect(ui->goBackScreen, SIGNAL(clicked(bool)), SLOT(goBackPreVideoScreen()));
+    ui->homeButtonmp4_2->setIcon(QIcon(":/home_page/media/home_icon.png"));
+    ui->homeButtonmp4_2->setIconSize(QSize(90,40));
     ui->videoVolume->setIcon(QIcon(":/mp3/media/volume_up-24px.svg"));
     ui->videoVolume->setIconSize(QSize(90,40));
     connect(ui->volumeSlider, SIGNAL(actionTriggered(int)), SLOT(handleVolumeSlider()));
 
+    connect(ui->videoList, SIGNAL(itemDoubleClicked(QListWidgetItem*)), SLOT(handleVideoListSelection(QListWidgetItem*)));
 
     connect(ui->homeButtonmp4, SIGNAL(clicked()), SLOT(navigateToHome()));
     connect(ui->homeButtonmp4_2, SIGNAL(clicked()), SLOT(navigateToHome()));
@@ -155,8 +157,16 @@ Entertainmentscreen::Entertainmentscreen(QWidget *parent)
     ui->backTierIssue->hide();
     connect(ui->checkBox, SIGNAL(clicked(bool)), SLOT(showTireDiagnostics()));
     connect(ui->lockChecker, SIGNAL(clicked(bool)), SLOT(lockCar()));
-    ui->lockerButton->setIcon(QIcon(":/carDiagnostics/media/padlock-unlock.png"));
-    ui->lockerButton->setIconSize(QSize(90,40));
+    connect(ui->homeButtonDiagnostics, SIGNAL(clicked(bool)), SLOT(navigateToHome()));
+    ui->label_3->setStyleSheet("background-image: url(:/carDiagnostics/media/padlock-unlock.png)");
+
+    /***************************************************************************/
+    /************************* Settings Pages Buttons ****************************/
+    /*************************************************************************/
+    connect(ui->settingsButton, SIGNAL(clicked(bool)), SLOT(handleSettingsButtonPress()));
+    connect(ui->darkLightMode_2,SIGNAL(clicked(bool)),SLOT(toggleDarkTheme()));
+    connect(ui->homeButtonSettings, SIGNAL(clicked(bool)), SLOT(navigateToHome()));
+    /***********************************************************************/
 }
 
 Entertainmentscreen::~Entertainmentscreen(){   delete ui;  }
@@ -188,14 +198,19 @@ void Entertainmentscreen:: refreshTime(){
     date = currentDate.toString();
     currentTime = QTime::currentTime();
     ui->dateText->setText(date);
+    ui->dateText_2->setText(date);
     ui->dateText->setAlignment(Qt::AlignRight);
+    ui->dateText_2->setAlignment(Qt::AlignRight);
     time = currentTime.toString("hh:mm AP");
     ui->timeText->setText(time);
+    ui->timeText_2->setText(time);
     ui->timeText->setAlignment(Qt::AlignRight);
+    ui->timeText_2->setAlignment(Qt::AlignRight);
+
 }
-void Entertainmentscreen:: startPage(){    ui->entertainmentScreenSwitch->setCurrentIndex(startPageIndex);  }
+void Entertainmentscreen:: startPage(){    ui->entertainmentScreenSwitch->setCurrentIndex(startPageIndex);  currentIndex = startPageIndex;}
 /* Mutual home button in every page (not avaiable in startPage) */
-void Entertainmentscreen:: navigateToHome(){    ui->entertainmentScreenSwitch->setCurrentIndex(homePageIndex);  }
+void Entertainmentscreen:: navigateToHome(){    ui->entertainmentScreenSwitch->setCurrentIndex(homePageIndex);  currentIndex = homePageIndex;}
 
 /******************************************************************************************************************************/
 /*************************************************    MultiMedia     *********************************************************/
@@ -207,15 +222,27 @@ void Entertainmentscreen:: refreshFlashStatus(){
 }
 
 void Entertainmentscreen:: toggleDarkTheme(){
-    static int darkThemeFlag = darkMode;
     if(darkThemeFlag == darkMode){
         darkThemeFlag = lightMode;
         Entertainmentscreen::setStyleSheet("background:url(:/mainBG/media/colorfulBackground.jpeg)");
         ui->darkLightMode->setIcon(QIcon(":/home_page/media/darkThemeOff_icon.png"));
+        ui->darkLightMode_2->setIcon(QIcon(":/home_page/media/darkThemeOff_icon.png"));
+
     }
     else{
         darkThemeFlag = darkMode;
-        Entertainmentscreen::setStyleSheet("background:url(:/mainBG/media/darkmodebackground.jpeg)");
+        Entertainmentscreen::setStyleSheet("background:url(:/home_page/media/1024x600-black-solid-color-background.jpg)");
         ui->darkLightMode->setIcon(QIcon(":/home_page/media/darkThemeOn_icon.png"));
+        ui->darkLightMode_2->setIcon(QIcon(":/home_page/media/darkThemeOn_icon.png"));
     }
 }
+
+// void Entertainmentscreen::on_actionOpen_File_Here_triggered()
+// {
+//     QString FileName = QFileDialog::getOpenFileName(this,tr("Select Audio File"),"",tr("MP3 Files (*.mp3)"));
+//     musicplaylist.push_back(static_cast<QString>(FileName));
+
+//     QFileInfo fileinfo(FileName);
+//     ui->label->setText(fileinfo.fileName());
+// }
+

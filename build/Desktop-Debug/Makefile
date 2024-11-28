@@ -1269,6 +1269,7 @@ qrc_home_page.cpp: ../../home_page.qrc \
 		../../media/settings_icon.png \
 		../../media/bluetooth_icon.png \
 		../../media/startButton.png \
+		../../media/1024x600-black-solid-color-background.jpg \
 		../../media/darkThemeOff_icon.png
 	/home/yasso/Qt/6.7.2/gcc_64/libexec/rcc -name home_page --no-zstd ../../home_page.qrc -o qrc_home_page.cpp
 
@@ -1296,7 +1297,10 @@ qrc_mp4.cpp: ../../mp4.qrc \
 		../../media/forward_icon.svg \
 		../../media/video_icon.png \
 		../../media/volume_up-24px.svg \
-		../../media/play_icon.svg
+		../../media/play_icon.svg \
+		../../media/mp4Video/E02.mp4 \
+		../../media/mp4Video/E03.mp4 \
+		../../media/mp4Video/E01.mp4
 	/home/yasso/Qt/6.7.2/gcc_64/libexec/rcc -name mp4 --no-zstd ../../mp4.qrc -o qrc_mp4.cpp
 
 qrc_bluetooth.cpp: ../../bluetooth.qrc \
@@ -1585,6 +1589,11 @@ moc_entertainmentscreen.cpp: ../../entertainmentscreen.hpp \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QCheckBox \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qcheckbox.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qabstractbutton.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QGraphicsView \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qgraphicsview.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qpainter.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qtextoption.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qscrollarea.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QLabel \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qlabel.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qpicture.h \
@@ -1891,6 +1900,11 @@ main.o: ../../main.cpp ../../entertainmentscreen.hpp \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QCheckBox \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qcheckbox.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qabstractbutton.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QGraphicsView \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qgraphicsview.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qpainter.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qtextoption.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qscrollarea.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QLabel \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qlabel.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qpicture.h \
@@ -2174,6 +2188,11 @@ entertainmentscreen.o: ../../entertainmentscreen.cpp ../../entertainmentscreen.h
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QCheckBox \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qcheckbox.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qabstractbutton.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QGraphicsView \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qgraphicsview.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qpainter.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qtextoption.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qscrollarea.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QLabel \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qlabel.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qpicture.h \
@@ -2462,6 +2481,11 @@ mp3.o: ../../mp3.cpp ../../entertainmentscreen.hpp \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QCheckBox \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qcheckbox.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qabstractbutton.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QGraphicsView \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qgraphicsview.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qpainter.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qtextoption.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qscrollarea.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QLabel \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qlabel.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qpicture.h \
@@ -2745,6 +2769,11 @@ mp4.o: ../../mp4.cpp ../../entertainmentscreen.hpp \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QCheckBox \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qcheckbox.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qabstractbutton.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QGraphicsView \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qgraphicsview.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qpainter.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qtextoption.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qscrollarea.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QLabel \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qlabel.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qpicture.h \
@@ -3031,6 +3060,11 @@ bluetooth.o: ../../bluetooth.cpp ../../entertainmentscreen.hpp \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QCheckBox \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qcheckbox.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qabstractbutton.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QGraphicsView \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qgraphicsview.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qpainter.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qtextoption.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qscrollarea.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QLabel \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qlabel.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qpicture.h \
@@ -3314,6 +3348,11 @@ settings.o: ../../settings.cpp ../../entertainmentscreen.hpp \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QCheckBox \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qcheckbox.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qabstractbutton.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QGraphicsView \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qgraphicsview.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qpainter.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qtextoption.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qscrollarea.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QLabel \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qlabel.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qpicture.h \
@@ -3597,6 +3636,11 @@ carDiagnostics.o: ../../carDiagnostics.cpp ../../entertainmentscreen.hpp \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QCheckBox \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qcheckbox.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qabstractbutton.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QGraphicsView \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qgraphicsview.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qpainter.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qtextoption.h \
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qscrollarea.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QLabel \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qlabel.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtGui/qpicture.h \

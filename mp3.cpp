@@ -4,6 +4,8 @@
 int playingSongFlag = 0;
 int chosenSong = 0;
 QListWidgetItem currentItemSelected;
+extern int currentIndex;
+
 /*****************************************************************************************************************************/
 /*************************************************    MP3    ****************************************************************/
 /***************************************************************************************************************************/
@@ -11,15 +13,20 @@ QListWidgetItem currentItemSelected;
 void Entertainmentscreen:: handleMusicButtonPress(){
     ui->entertainmentScreenSwitch->setCurrentIndex(musicPageIndex);
     ui->musicIconmp3->setIcon(QIcon(":/home_page/media/music_icon.png"));
-    ui->musicIconmp3->setIconSize(QSize(80,40));
+    ui->musicIconmp3->setIconSize(QSize(90,40));
     ui->homeButtonmp3->setIcon(QIcon(":/home_page/media/home_icon.png"));
     ui->homeButtonmp3->setIconSize(QSize(100,50));
+    ui->SongList->setResizeMode(QListView::Fixed);
+    //ui->SongList->setGridSize(QSize(64,64));
+    ui->SongList->setSpacing(musicplaylistName.size());
+    ui->SongList->setFlow(QListView::TopToBottom);
+    currentIndex = musicPageIndex;
 }
 void Entertainmentscreen:: handleSongListSelection(QListWidgetItem* item){
     chosenSong = ui->SongList->row(item);
-    if(chosenSong <= musicplaylistName.size() && chosenSong >= 0){
-    musicPlayer->setSource(QUrl(musicplaylist.at(chosenSong-1)));
-    musicPlayer->play();
+    if(chosenSong < musicplaylistName.size() && chosenSong >= 0){
+    musicPlayer->setSource(QUrl(musicplaylist.at(chosenSong)));
+        startSong();
     }
     refreshPosition();
     ui->pausecontinueButton->setIcon(QIcon(":/mp3/media/pause_icon.svg"));
@@ -29,7 +36,8 @@ void Entertainmentscreen:: onSongUpdate(){
 
 }
 void Entertainmentscreen:: startSong(){
-
+    musicPlayer->play();
+    playingSongFlag =1;
 }
 void Entertainmentscreen:: refreshSongList(){
 
@@ -46,8 +54,7 @@ void Entertainmentscreen:: handleVolumeSlider(){
 }
 void Entertainmentscreen:: handlePlayButtonPress(){
     if(playingSongFlag ==0){
-        musicPlayer->play();
-        playingSongFlag = 1;
+        startSong();
         ui->pausecontinueButton->setIcon(QIcon(":/mp3/media/pause_icon.svg"));
     }
     else{
@@ -59,21 +66,30 @@ void Entertainmentscreen:: handlePlayButtonPress(){
 
 }
 void Entertainmentscreen:: handleForwardButtonPress(){
-    chosenSong++;
-    if(chosenSong <= musicplaylistName.capacity() && chosenSong >= 0){
-        musicPlayer->setSource(QUrl(musicplaylist.at(chosenSong-1)));
-        musicPlayer->play();
+    ++chosenSong;
+    if(chosenSong < musicplaylistName.size()){
+        musicPlayer->setSource(QUrl(musicplaylist.at(chosenSong)));
     }
     else {
-        resetSong();
-        chosenSong = 1;
-        musicPlayer->setSource(QUrl(musicplaylist.at(chosenSong-1)));
-        musicPlayer->play();
+        chosenSong = musicplaylistName.size()-1;
+        musicPlayer->setSource(QUrl(musicplaylist.at(chosenSong)));
     }
+    if(playingSongFlag == 1) musicPlayer->play();;
+    ui->SongList->setCurrentRow(chosenSong);
     refreshPosition();
 }
 void Entertainmentscreen:: handleBackwardButtonPress(){
-
+    chosenSong--;
+    if(chosenSong >= 0){
+        musicPlayer->setSource(QUrl(musicplaylist.at(chosenSong)));
+    }
+    else {
+        chosenSong = 0;
+        musicPlayer->setSource(QUrl(musicplaylist.at(chosenSong)));
+    }
+    if(playingSongFlag == 1) musicPlayer->play();;
+    ui->SongList->setCurrentRow(chosenSong);
+    refreshPosition();
 }
 void Entertainmentscreen:: handleRepeatButtonPress(){
 
@@ -113,9 +129,9 @@ void Entertainmentscreen:: refreshPosition(){
     ui->timeDuration0->setText(currentTimeDuration.toString(format));
 }
 void Entertainmentscreen:: resetSong(){
-    chosenSong = 1;
-    ui->musicSlider->setSliderPosition(0);
-    musicPlayer->setSource(QUrl(musicplaylist.at(chosenSong-1)));
-
-    handlePlayButtonPress();
+    chosenSong = 0;
+    musicPlayer->setSource(QUrl(musicplaylist.at(chosenSong)));
+    refreshPosition();
+    ui->SongList->setCurrentRow(chosenSong);
+    if(playingSongFlag == 1) musicPlayer->play();;
 }

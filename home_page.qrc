@@ -13,6 +13,6 @@
 	<file>media/video_icon.png</file>
 	<file>media/calls_icon.png</file>	
 	<file>media/carDiagnostics.png</file>
-	
+	<file>media/1024x600-black-solid-color-background.jpg</file>
     </qresource>
 </RCC>
