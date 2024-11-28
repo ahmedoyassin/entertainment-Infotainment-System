@@ -2203,9 +2203,7 @@ entertainmentscreen.o: ../../entertainmentscreen.cpp ../../entertainmentscreen.h
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qstackedwidget.h \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QStatusBar \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/qstatusbar.h \
-		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QWidget \
-		../../systeminterface.hpp \
-		../../targets.hpp
+		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o entertainmentscreen.o ../../entertainmentscreen.cpp
 
 mp3.o: ../../mp3.cpp ../../entertainmentscreen.hpp \

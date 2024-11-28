@@ -3,7 +3,6 @@
 
 int playingSongFlag = 0;
 int chosenSong = 0;
-QListWidgetItem currentItemSelected;
 extern int currentIndex;
 
 /*****************************************************************************************************************************/
@@ -19,6 +18,7 @@ void Entertainmentscreen:: handleSongListSelection(QListWidgetItem* item){
     if(chosenSong < musicplaylistName.size() && chosenSong >= 0){
     musicPlayer->setSource(QUrl(musicplaylist.at(chosenSong)));
         startSong();
+        haltVideo();
     }
     refreshPosition();
     ui->pausecontinueButton->setIcon(QIcon(":/mp3/media/pause_icon.svg"));
@@ -37,8 +37,9 @@ void Entertainmentscreen:: startSong(){
     musicPlayer->play();
     playingSongFlag =1;
 }
-void Entertainmentscreen:: refreshSongList(){
-
+void Entertainmentscreen:: haltSong(){
+    musicPlayer->pause();
+    playingSongFlag =0;
 }
 
 void Entertainmentscreen:: handleVolumeSlider(){

@@ -1,28 +1,12 @@
 #include "entertainmentscreen.hpp"
 
-#include "systeminterface.hpp"
-#include "targets.hpp"
-
-
 // Constants for command status
-constexpr int commandSuccess = 0;
 /* General Variables */
 int currentIndex;
 /* Multimedia Variables */
-int flashStatus = flashNotDetected;
 int darkThemeFlag = darkMode;
-std::string usbName, usbPath;
 
-/* Music Variables */
-std::string musicFileExtension = ".mp3";
-
-/* Video Variables */
-std::string videoFileExtension = ".mp4";
 int isVideoPlaying = 0;
-long long videoSeekStep = 10000; // Seek step in milliseconds
-
-/* Bluetooth Variables */
-int bluetoothConnectionStatus = bluetoothDisconnected;
 
 Entertainmentscreen::Entertainmentscreen(QWidget *parent)
     : QMainWindow(parent)
@@ -81,7 +65,7 @@ Entertainmentscreen::Entertainmentscreen(QWidget *parent)
     audioOutput->setVolume(static_cast<float> (defaultVolume)/100.00f);
     musicPlayer->setAudioOutput(audioOutput);
 
-    ui->musicSlider->setMaximum(100);
+    ui->musicSlider->setMaximum(maxVolume);
     ui->SongList->clear();
     ui->SongList->addItems(musicplaylistName);
     ui->pausecontinueButton->setIcon(QIcon(":/mp3/media/play_icon.svg"));

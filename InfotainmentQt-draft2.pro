@@ -25,13 +25,13 @@ SOURCES += \
     calculator.cpp \
     bluetooth.cpp \
     settings.cpp \
-    carDiagnostics.cpp
+    carDiagnostics.cpp \
 
 HEADERS += \
-    entertainmentscreen.hpp
+    entertainmentscreen.hpp \
 
 FORMS += \
-    entertainmentscreen.ui
+    entertainmentscreen.ui \
 
 RESOURCES += \
     backgrounds.qrc \
@@ -40,7 +40,7 @@ RESOURCES += \
     mp4.qrc \
     bluetooth.qrc \
     setting.qrc \
-    carDiagnostics.qrc
+    carDiagnostics.qrc \
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

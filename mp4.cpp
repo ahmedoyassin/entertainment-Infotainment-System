@@ -18,6 +18,7 @@ void Entertainmentscreen:: handleVideoListSelection(QListWidgetItem* item){
         videoPlayer->setSource(QUrl(videoPlaylist.at(chosenVideo)));
         goVideoScreen();
         startVideo();
+        haltSong();
     }
     refreshPosition();
     ui->pausecontinueButton->setIcon(QIcon(":/mp3/media/pause_icon.svg"));
@@ -76,7 +77,8 @@ void Entertainmentscreen:: startVideo(){
     playingVideoFlag =1;
 }
 void Entertainmentscreen:: haltVideo(){
-
+    videoPlayer->pause();
+    playingVideoFlag =0;
 }
 
 void Entertainmentscreen:: goVideoScreen(){

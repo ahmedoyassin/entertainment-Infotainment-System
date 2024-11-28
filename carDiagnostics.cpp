@@ -33,5 +33,4 @@ void Entertainmentscreen:: lockCar(){
         ui->label_3->setStyleSheet("background-image: url(:/carDiagnostics/media/padlock-unlock.png)");
         lockCarFlag = Locked;
     }
-
 }

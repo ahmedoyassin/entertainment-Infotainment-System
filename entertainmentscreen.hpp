@@ -149,7 +149,7 @@ private slots:
     void handleSongListSelection(QListWidgetItem* item);
     void onSongUpdate();
     void startSong();
-    void refreshSongList();
+    void haltSong();
     void handleVolumeSlider();
     void handlePlayButtonPress();
     void handleForwardButtonPress();

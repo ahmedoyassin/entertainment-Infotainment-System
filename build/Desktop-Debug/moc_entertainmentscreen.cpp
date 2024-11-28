@@ -48,7 +48,7 @@ constexpr auto qt_meta_stringdata_CLASSEntertainmentscreenENDCLASS = QtMocHelper
     "item",
     "onSongUpdate",
     "startSong",
-    "refreshSongList",
+    "haltSong",
     "handleVolumeSlider",
     "handlePlayButtonPress",
     "handleForwardButtonPress",
@@ -221,7 +221,7 @@ Q_CONSTINIT const QMetaObject Entertainmentscreen::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'startSong'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'refreshSongList'
+        // method 'haltSong'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'handleVolumeSlider'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
@@ -310,7 +310,7 @@ void Entertainmentscreen::qt_static_metacall(QObject *_o, QMetaObject::Call _c, 
         case 5: _t->handleSongListSelection((*reinterpret_cast< std::add_pointer_t<QListWidgetItem*>>(_a[1]))); break;
         case 6: _t->onSongUpdate(); break;
         case 7: _t->startSong(); break;
-        case 8: _t->refreshSongList(); break;
+        case 8: _t->haltSong(); break;
         case 9: _t->handleVolumeSlider(); break;
         case 10: _t->handlePlayButtonPress(); break;
         case 11: _t->handleForwardButtonPress(); break;
