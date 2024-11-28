@@ -91,8 +91,8 @@ public:
     QPushButton *videoconmp4;
     QPushButton *homeButtonmp4;
     QListWidget *videoList;
+    QLabel *label_7;
     QWidget *videoPage;
-    QPushButton *videoconmp4_2;
     QPushButton *homeButtonmp4_2;
     QPushButton *goBackScreen;
     QPushButton *videoVolume;
@@ -103,7 +103,8 @@ public:
     QPushButton *videoForwardButton;
     QPushButton *playVideoButton;
     QPushButton *videoBackwardButton;
-    QGraphicsView *graphicsView;
+    QGraphicsView *videoView;
+    QGraphicsView *graphicsView_2;
     QWidget *settingsPage;
     QLabel *label_4;
     QLabel *label_5;
@@ -220,7 +221,7 @@ public:
         musicPage->setObjectName("musicPage");
         musicIconmp3 = new QPushButton(musicPage);
         musicIconmp3->setObjectName("musicIconmp3");
-        musicIconmp3->setGeometry(QRect(20, 40, 80, 40));
+        musicIconmp3->setGeometry(QRect(25, 40, 80, 40));
         musicIconmp3->setStyleSheet(QString::fromUtf8("QPushButton{\n"
 "border:none;\n"
 "}"));
@@ -282,7 +283,13 @@ public:
         musicSlider->setOrientation(Qt::Orientation::Horizontal);
         label = new QLabel(musicPage);
         label->setObjectName("label");
-        label->setGeometry(QRect(70, 120, 101, 17));
+        label->setGeometry(QRect(30, 90, 153, 43));
+        QFont font;
+        font.setFamilies({QString::fromUtf8("Suranna")});
+        font.setPointSize(18);
+        font.setBold(true);
+        font.setItalic(true);
+        label->setFont(font);
         timeDuration0 = new QLabel(musicPage);
         timeDuration0->setObjectName("timeDuration0");
         timeDuration0->setGeometry(QRect(350, 455, 60, 17));
@@ -294,7 +301,7 @@ public:
         SongList = new QListWidget(musicPage);
         new QListWidgetItem(SongList);
         SongList->setObjectName("SongList");
-        SongList->setGeometry(QRect(123, 150, 700, 241));
+        SongList->setGeometry(QRect(100, 123, 800, 271));
         entertainmentScreenSwitch->addWidget(musicPage);
         calcolatorPage = new QWidget();
         calcolatorPage->setObjectName("calcolatorPage");
@@ -373,11 +380,11 @@ public:
         backTierIssue = new QLabel(carDiagnosticPage);
         backTierIssue->setObjectName("backTierIssue");
         backTierIssue->setGeometry(QRect(270, 500, 649, 32));
-        QFont font;
-        font.setFamilies({QString::fromUtf8("DejaVu Sans")});
-        font.setBold(true);
-        font.setItalic(true);
-        backTierIssue->setFont(font);
+        QFont font1;
+        font1.setFamilies({QString::fromUtf8("DejaVu Sans")});
+        font1.setBold(true);
+        font1.setItalic(true);
+        backTierIssue->setFont(font1);
         backTierIssue->setAutoFillBackground(true);
         backTierIssue->setStyleSheet(QString::fromUtf8("QLabel{\n"
 "text: \"There's issues with this tier please go to the Maintenance center to be safe\"\n"
@@ -407,7 +414,7 @@ public:
         preVideoPage->setObjectName("preVideoPage");
         videoconmp4 = new QPushButton(preVideoPage);
         videoconmp4->setObjectName("videoconmp4");
-        videoconmp4->setGeometry(QRect(25, 80, 80, 40));
+        videoconmp4->setGeometry(QRect(25, 40, 80, 40));
         videoconmp4->setStyleSheet(QString::fromUtf8("QPushButton{\n"
 "border:none;\n"
 "}"));
@@ -424,16 +431,14 @@ public:
         videoList = new QListWidget(preVideoPage);
         new QListWidgetItem(videoList);
         videoList->setObjectName("videoList");
-        videoList->setGeometry(QRect(100, 200, 700, 241));
+        videoList->setGeometry(QRect(100, 133, 800, 341));
+        label_7 = new QLabel(preVideoPage);
+        label_7->setObjectName("label_7");
+        label_7->setGeometry(QRect(30, 90, 151, 43));
+        label_7->setFont(font);
         entertainmentScreenSwitch->addWidget(preVideoPage);
         videoPage = new QWidget();
         videoPage->setObjectName("videoPage");
-        videoconmp4_2 = new QPushButton(videoPage);
-        videoconmp4_2->setObjectName("videoconmp4_2");
-        videoconmp4_2->setGeometry(QRect(25, 80, 80, 40));
-        videoconmp4_2->setStyleSheet(QString::fromUtf8("QPushButton{\n"
-"border:none;\n"
-"}"));
         homeButtonmp4_2 = new QPushButton(videoPage);
         homeButtonmp4_2->setObjectName("homeButtonmp4_2");
         homeButtonmp4_2->setGeometry(QRect(462, 480, 100, 50));
@@ -522,12 +527,15 @@ public:
 "border:none;\n"
 "outline: none;\n"
 "}"));
-        graphicsView = new QGraphicsView(videoPage);
-        graphicsView->setObjectName("graphicsView");
-        graphicsView->setGeometry(QRect(0, 0, 1024, 600));
+        videoView = new QGraphicsView(videoPage);
+        videoView->setObjectName("videoView");
+        videoView->setGeometry(QRect(0, 0, 1024, 480));
+        graphicsView_2 = new QGraphicsView(videoPage);
+        graphicsView_2->setObjectName("graphicsView_2");
+        graphicsView_2->setGeometry(QRect(0, 0, 1024, 600));
         entertainmentScreenSwitch->addWidget(videoPage);
-        graphicsView->raise();
-        videoconmp4_2->raise();
+        graphicsView_2->raise();
+        videoView->raise();
         homeButtonmp4_2->raise();
         goBackScreen->raise();
         videoVolume->raise();
@@ -543,19 +551,19 @@ public:
         label_4 = new QLabel(settingsPage);
         label_4->setObjectName("label_4");
         label_4->setGeometry(QRect(60, 120, 124, 37));
-        QFont font1;
-        font1.setPointSize(25);
-        label_4->setFont(font1);
+        QFont font2;
+        font2.setPointSize(25);
+        label_4->setFont(font2);
         label_5 = new QLabel(settingsPage);
         label_5->setObjectName("label_5");
         label_5->setGeometry(QRect(140, 180, 185, 24));
-        QFont font2;
-        font2.setPointSize(16);
-        label_5->setFont(font2);
+        QFont font3;
+        font3.setPointSize(16);
+        label_5->setFont(font3);
         label_6 = new QLabel(settingsPage);
         label_6->setObjectName("label_6");
         label_6->setGeometry(QRect(140, 230, 117, 24));
-        label_6->setFont(font2);
+        label_6->setFont(font3);
         dateText_2 = new QLabel(settingsPage);
         dateText_2->setObjectName("dateText_2");
         dateText_2->setGeometry(QRect(450, 230, 150, 20));
@@ -607,7 +615,7 @@ public:
 
         retranslateUi(Entertainmentscreen);
 
-        entertainmentScreenSwitch->setCurrentIndex(4);
+        entertainmentScreenSwitch->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(Entertainmentscreen);
@@ -675,7 +683,7 @@ public:
         videoList->setSortingEnabled(false);
         videoList->setSortingEnabled(__sortingEnabled1);
 
-        videoconmp4_2->setText(QString());
+        label_7->setText(QCoreApplication::translate("Entertainmentscreen", "Video Playlist:", nullptr));
         homeButtonmp4_2->setText(QString());
         goBackScreen->setText(QString());
         videoVolume->setText(QString());

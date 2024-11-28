@@ -78,76 +78,87 @@ Entertainmentscreen::Entertainmentscreen(QWidget *parent)
     /*************************************************************************/
 
     audioOutput->setDevice(audioDevice); // Set the device
-    ui->volumeSlider->setSliderPosition(defaultVolume);
     audioOutput->setVolume(static_cast<float> (defaultVolume)/100.00f);
     musicPlayer->setAudioOutput(audioOutput);
-    connect(musicPlayer,SIGNAL(positionChanged(qint64)), SLOT(refreshPosition()));
-    connect(ui->musicSlider, SIGNAL(sliderReleased()),SLOT(refreshDuration()));
-    connect(musicPlayer, SIGNAL(audioOutputChanged()),SLOT(handleForwardButtonPress()));
+
     ui->musicSlider->setMaximum(100);
     ui->SongList->clear();
     ui->SongList->addItems(musicplaylistName);
-    connect(ui->SongList, SIGNAL(itemDoubleClicked(QListWidgetItem*)), SLOT(handleSongListSelection(QListWidgetItem*)));
-    connect(ui->forwardButton, SIGNAL(clicked()), SLOT(handleForwardButtonPress()));
-    connect(ui->backwardButton, SIGNAL(clicked()), SLOT(handleBackwardButtonPress()));
-
     ui->pausecontinueButton->setIcon(QIcon(":/mp3/media/play_icon.svg"));
     ui->pausecontinueButton->setIconSize(QSize(90,40));
-    connect(ui->pausecontinueButton, SIGNAL(clicked()), SLOT(handlePlayButtonPress()));
     ui->forwardButton->setIcon(QIcon(":/mp3/media/forward_icon.svg"));
     ui->forwardButton->setIconSize(QSize(90,40));
     ui->backwardButton->setIcon(QIcon(":/mp3/media/backward_icon.svg"));
     ui->backwardButton->setIconSize(QSize(90,40));
     ui->shuffleButton->setIcon(QIcon(":/mp3/media/shuffle_icon.png"));
     ui->shuffleButton->setIconSize(QSize(90,40));
-    connect(ui->shuffleButton, SIGNAL(clicked()), SLOT(handleShuffleButtonPress()));
     ui->musicVolume->setIcon(QIcon(":/mp3/media/volume_up-24px.svg"));
     ui->musicVolume->setIconSize(QSize(90,40));
-    connect(ui->volumeSlider, SIGNAL(actionTriggered(int)), SLOT(handleVolumeSlider()));
-    // QStringList playList = parsePlaylist(playlistFile);
-    // musicPlayer->setAudioOutput(audioOutput);
-    // QObject::connect(musicPlayer, &QMediaPlayer::mediaStatusChanged, [&](QMediaPlayer::MediaStatus status) {
-    //     if (status == QMediaPlayer::EndOfMedia) {
-    //         currentIndex = (currentIndex + 1) % playList.size();
-    //         musicPlayer->setSource(QUrl::fromLocalFile(playList[currentIndex]));
-    //         musicPlayer->play();
-    //     }
-    // });
-    // musicPlayer->
-    // musicPlayer->setSource(QUrl(":/mp3/media/MATEEGY_A3ADY_ALEIKY.mp3"));
-    // musicPlayer->activeAudioTrack();
-    // musicPlayer->play();
+    ui->volumeSlider->setSliderPosition(defaultVolume);
+    ui->musicIconmp3->setIcon(QIcon(":/home_page/media/music_icon.png"));
+    ui->musicIconmp3->setIconSize(QSize(90,40));
+    ui->homeButtonmp3->setIcon(QIcon(":/home_page/media/home_icon.png"));
+    ui->homeButtonmp3->setIconSize(QSize(100,50));
+    ui->SongList->setResizeMode(QListView::Fixed);
+    ui->SongList->setSpacing(musicplaylistName.size());
+    ui->SongList->setFlow(QListView::TopToBottom);
 
+    connect(ui->shuffleButton, SIGNAL(clicked()), SLOT(handleShuffleButtonPress()));
+    connect(ui->volumeSlider, SIGNAL(actionTriggered(int)), SLOT(handleVolumeSlider()));
+    connect(ui->SongList, SIGNAL(itemDoubleClicked(QListWidgetItem*)), SLOT(handleSongListSelection(QListWidgetItem*)));
+    connect(ui->forwardButton, SIGNAL(clicked()), SLOT(handleForwardButtonPress()));
+    connect(ui->backwardButton, SIGNAL(clicked()), SLOT(handleBackwardButtonPress()));
     connect(ui->homeButtonmp3, SIGNAL(clicked()), SLOT(navigateToHome()));
+    connect(musicPlayer,SIGNAL(positionChanged(qint64)), SLOT(refreshPosition()));
+    connect(ui->musicSlider, SIGNAL(sliderReleased()),SLOT(refreshDuration()));
+    connect(musicPlayer, SIGNAL(audioOutputChanged()),SLOT(handleForwardButtonPress()));
+    connect(ui->pausecontinueButton, SIGNAL(clicked()), SLOT(handlePlayButtonPress()));
 
     /***************************************************************************/
     /************************* Video Pages Buttons ****************************/
     /*************************************************************************/
-
-    ui->playVideoButton->setIcon(QIcon(":/mp3/media/play_icon.svg"));
+    videoOutput->setDevice(audioDevice); // Set the device
+    videoOutput->setVolume(static_cast<float> (defaultVolume)/100.00f);
+    videoPlayer->setAudioOutput(videoOutput);
+    videoPlayer->setVideoOutput(videoGraphicsItem);
+    videoScene->addItem(videoGraphicsItem);
+    videoGraphicsItem->setSize(QSize(1000,475));
+    ui->videoList->setResizeMode(QListView::Fixed);
+    ui->videoList->setSpacing(videoPlaylistName.size());
+    ui->videoList->setFlow(QListView::TopToBottom);
+    ui->volumeVideoSlider->setSliderPosition(defaultVolume);
+    ui->playVideoButton->setIcon(QIcon(":/mp3/media/pause_icon.svg"));
     ui->playVideoButton->setIconSize(QSize(90,40));
-    connect(ui->playVideoButton, SIGNAL(clicked()), SLOT(handlePlayButtonPress()));
     ui->videoForwardButton->setIcon(QIcon(":/mp3/media/forward_icon.svg"));
     ui->videoForwardButton->setIconSize(QSize(90,40));
-    connect(ui->videoForwardButton, SIGNAL(clicked()), SLOT(handleForwardButtonPress()));
     ui->videoBackwardButton->setIcon(QIcon(":/mp3/media/backward_icon.svg"));
     ui->videoBackwardButton->setIconSize(QSize(90,40));
-    connect(ui->videoBackwardButton, SIGNAL(clicked()), SLOT(handleBackwardButtonPress()));
     ui->videoList->clear();
     ui->videoList->addItems(videoPlaylistName);
     ui->goBackScreen->setIcon(QIcon(":/mp4/media/goBack.svg"));
     ui->goBackScreen->setIconSize(QSize(90,40));
-    connect(ui->goBackScreen, SIGNAL(clicked(bool)), SLOT(goBackPreVideoScreen()));
     ui->homeButtonmp4_2->setIcon(QIcon(":/home_page/media/home_icon.png"));
     ui->homeButtonmp4_2->setIconSize(QSize(90,40));
     ui->videoVolume->setIcon(QIcon(":/mp3/media/volume_up-24px.svg"));
     ui->videoVolume->setIconSize(QSize(90,40));
-    connect(ui->volumeSlider, SIGNAL(actionTriggered(int)), SLOT(handleVolumeSlider()));
+    ui->videoconmp4->setIcon(QIcon(":/home_page/media/video_icon.png"));
+    ui->videoconmp4->setIconSize(QSize(80,40));
+    ui->homeButtonmp4->setIcon(QIcon(":/home_page/media/home_icon.png"));
+    ui->homeButtonmp4->setIconSize(QSize(100,50));
+    ui->videoView->setScene(videoScene);
 
+
+    connect(ui->volumeVideoSlider, SIGNAL(actionTriggered(int)), SLOT(handleVideoVolume()));
     connect(ui->videoList, SIGNAL(itemDoubleClicked(QListWidgetItem*)), SLOT(handleVideoListSelection(QListWidgetItem*)));
-
+    connect(ui->videoForwardButton, SIGNAL(clicked(bool)), SLOT(handleVideoForwardPress()));
+    connect(ui->videoBackwardButton, SIGNAL(clicked(bool)), SLOT(handleVideoBackwardPress()));
+    connect(ui->goBackScreen, SIGNAL(clicked(bool)), SLOT(goBackPreVideoScreen()));
+    connect(ui->playVideoButton, SIGNAL(clicked()), SLOT(handleVideoPlayPress()));
+    connect(videoPlayer,SIGNAL(positionChanged(qint64)), SLOT(refreshVideoPosition()));
+    connect(ui->videoSlider, SIGNAL(sliderReleased()),SLOT(refreshVideoDuration()));
     connect(ui->homeButtonmp4, SIGNAL(clicked()), SLOT(navigateToHome()));
     connect(ui->homeButtonmp4_2, SIGNAL(clicked()), SLOT(navigateToHome()));
+
     /***************************************************************************/
     /*********************** Diagnostics Pages Buttons ************************/
     /*************************************************************************/

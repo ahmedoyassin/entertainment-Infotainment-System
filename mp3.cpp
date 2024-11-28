@@ -12,14 +12,6 @@ extern int currentIndex;
 
 void Entertainmentscreen:: handleMusicButtonPress(){
     ui->entertainmentScreenSwitch->setCurrentIndex(musicPageIndex);
-    ui->musicIconmp3->setIcon(QIcon(":/home_page/media/music_icon.png"));
-    ui->musicIconmp3->setIconSize(QSize(90,40));
-    ui->homeButtonmp3->setIcon(QIcon(":/home_page/media/home_icon.png"));
-    ui->homeButtonmp3->setIconSize(QSize(100,50));
-    ui->SongList->setResizeMode(QListView::Fixed);
-    //ui->SongList->setGridSize(QSize(64,64));
-    ui->SongList->setSpacing(musicplaylistName.size());
-    ui->SongList->setFlow(QListView::TopToBottom);
     currentIndex = musicPageIndex;
 }
 void Entertainmentscreen:: handleSongListSelection(QListWidgetItem* item){
@@ -33,7 +25,13 @@ void Entertainmentscreen:: handleSongListSelection(QListWidgetItem* item){
 }
 
 void Entertainmentscreen:: onSongUpdate(){
-
+    if(chosenSong == musicplaylistName.size()){
+        musicPlayer->setSource(QUrl(musicplaylist.at(0)));
+    }
+    else{
+        chosenSong++;
+        musicPlayer->setSource(QUrl(musicplaylist.at(chosenSong)));
+    }
 }
 void Entertainmentscreen:: startSong(){
     musicPlayer->play();
@@ -63,7 +61,6 @@ void Entertainmentscreen:: handlePlayButtonPress(){
         //musicPlayer->setPosition(1000*60);
         musicPlayer->pause();
     }
-
 }
 void Entertainmentscreen:: handleForwardButtonPress(){
     ++chosenSong;

@@ -60,18 +60,18 @@ constexpr auto qt_meta_stringdata_CLASSEntertainmentscreenENDCLASS = QtMocHelper
     "refreshPosition",
     "resetSong",
     "handleVideoButtonPress",
-    "refreshVideoList",
-    "handleVideoListNavigation",
     "handleVideoListSelection",
     "handleVideoBackwardPress",
     "handleVideoForwardPress",
     "handleVideoPlayPress",
-    "handleVideoStopPress",
-    "handleVideoVolumeDownPress",
-    "handleVideoVolumeUpPress",
+    "handleVideoVolume",
     "startVideo",
     "haltVideo",
+    "goVideoScreen",
     "goBackPreVideoScreen",
+    "refreshVideoDuration",
+    "refreshVideoPosition",
+    "resetVideo",
     "activateBluetooth",
     "refreshBluetoothDevices",
     "handleBluetoothButtonPress",
@@ -123,9 +123,9 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSEntertainmentscreenENDCLASS[] = 
       21,    0,  291,    2, 0x08,   19 /* Private */,
       22,    0,  292,    2, 0x08,   20 /* Private */,
       23,    0,  293,    2, 0x08,   21 /* Private */,
-      24,    0,  294,    2, 0x08,   22 /* Private */,
-      25,    0,  295,    2, 0x08,   23 /* Private */,
-      26,    1,  296,    2, 0x08,   24 /* Private */,
+      24,    1,  294,    2, 0x08,   22 /* Private */,
+      25,    0,  297,    2, 0x08,   24 /* Private */,
+      26,    0,  298,    2, 0x08,   25 /* Private */,
       27,    0,  299,    2, 0x08,   26 /* Private */,
       28,    0,  300,    2, 0x08,   27 /* Private */,
       29,    0,  301,    2, 0x08,   28 /* Private */,
@@ -168,9 +168,9 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSEntertainmentscreenENDCLASS[] = 
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
     QMetaType::Void, 0x80000000 | 8,    9,
+    QMetaType::Void,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -245,10 +245,6 @@ Q_CONSTINIT const QMetaObject Entertainmentscreen::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'handleVideoButtonPress'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'refreshVideoList'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'handleVideoListNavigation'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'handleVideoListSelection'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<QListWidgetItem *, std::false_type>,
@@ -258,17 +254,21 @@ Q_CONSTINIT const QMetaObject Entertainmentscreen::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'handleVideoPlayPress'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'handleVideoStopPress'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'handleVideoVolumeDownPress'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'handleVideoVolumeUpPress'
+        // method 'handleVideoVolume'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'startVideo'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'haltVideo'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'goVideoScreen'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'goBackPreVideoScreen'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'refreshVideoDuration'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'refreshVideoPosition'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'resetVideo'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'activateBluetooth'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
@@ -322,18 +322,18 @@ void Entertainmentscreen::qt_static_metacall(QObject *_o, QMetaObject::Call _c, 
         case 17: _t->refreshPosition(); break;
         case 18: _t->resetSong(); break;
         case 19: _t->handleVideoButtonPress(); break;
-        case 20: _t->refreshVideoList(); break;
-        case 21: _t->handleVideoListNavigation(); break;
-        case 22: _t->handleVideoListSelection((*reinterpret_cast< std::add_pointer_t<QListWidgetItem*>>(_a[1]))); break;
-        case 23: _t->handleVideoBackwardPress(); break;
-        case 24: _t->handleVideoForwardPress(); break;
-        case 25: _t->handleVideoPlayPress(); break;
-        case 26: _t->handleVideoStopPress(); break;
-        case 27: _t->handleVideoVolumeDownPress(); break;
-        case 28: _t->handleVideoVolumeUpPress(); break;
-        case 29: _t->startVideo(); break;
-        case 30: _t->haltVideo(); break;
-        case 31: _t->goBackPreVideoScreen(); break;
+        case 20: _t->handleVideoListSelection((*reinterpret_cast< std::add_pointer_t<QListWidgetItem*>>(_a[1]))); break;
+        case 21: _t->handleVideoBackwardPress(); break;
+        case 22: _t->handleVideoForwardPress(); break;
+        case 23: _t->handleVideoPlayPress(); break;
+        case 24: _t->handleVideoVolume(); break;
+        case 25: _t->startVideo(); break;
+        case 26: _t->haltVideo(); break;
+        case 27: _t->goVideoScreen(); break;
+        case 28: _t->goBackPreVideoScreen(); break;
+        case 29: _t->refreshVideoDuration(); break;
+        case 30: _t->refreshVideoPosition(); break;
+        case 31: _t->resetVideo(); break;
         case 32: _t->activateBluetooth(); break;
         case 33: _t->refreshBluetoothDevices(); break;
         case 34: _t->handleBluetoothButtonPress(); break;

@@ -112,6 +112,11 @@ public:
     QAudioOutput *audioOutput = new QAudioOutput();
     QAudioDevice audioDevice = QMediaDevices::defaultAudioOutput(); // Get the default device
 
+    QMediaPlayer *videoPlayer = new QMediaPlayer;
+    QAudioOutput *videoOutput = new QAudioOutput();
+    QGraphicsScene *videoScene = new QGraphicsScene;
+    QGraphicsVideoItem *videoGraphicsItem = new QGraphicsVideoItem;
+
     std::vector<QString> musicplaylist = {"/media/yasso/yasso2/Embedded Systems/grad project/qt/InfotainmentQt-draft2/media/mp3Songs/HabibyLeeh.mp3"
                                           , "/media/yasso/yasso2/Embedded Systems/grad project/qt/InfotainmentQt-draft2/media/mp3Songs/MATEGYA3ADY3LEKY.mp3"
                                           , "/media/yasso/yasso2/Embedded Systems/grad project/qt/InfotainmentQt-draft2/media/mp3Songs/LeehBENKHABYWMSHBEN2OL.mp3"
@@ -120,10 +125,8 @@ public:
     std::vector<QString> videoPlaylist = {"/media/yasso/yasso2/Embedded Systems/grad project/qt/InfotainmentQt-draft2/media/mp4Video/E01.mp4"
                                           , "/media/yasso/yasso2/Embedded Systems/grad project/qt/InfotainmentQt-draft2/media/mp4Video/E02.mp4"
                                           , "/media/yasso/yasso2/Embedded Systems/grad project/qt/InfotainmentQt-draft2/media/mp4Video/E03.mp4"
-                                          , "/media/yasso/yasso2/Embedded Systems/grad project/qt/InfotainmentQt-draft2/media/mp4Video/E04.mp4"
-                                          , "/media/yasso/yasso2/Embedded Systems/grad project/qt/InfotainmentQt-draft2/media/mp4Video/E05.mp4"
-                                          , "/media/yasso/yasso2/Embedded Systems/grad project/qt/InfotainmentQt-draft2/media/mp4Video/E06.mp4"};
-    QStringList videoPlaylistName = {"E01", "E02", "E03", "E04", "E05", "E06"};
+                                          };
+    QStringList videoPlaylistName = {"E01", "E02", "E03"};
 private slots:
     /******************************************************************************************************************************/
     /*************************************************    Generic     ************************************************************/
@@ -162,19 +165,18 @@ private slots:
     /***************************************************************************************************************************/
 
     void handleVideoButtonPress();
-    void refreshVideoList();
-    void handleVideoListNavigation();
     void handleVideoListSelection(QListWidgetItem* item);
     void handleVideoBackwardPress();
     void handleVideoForwardPress();
     void handleVideoPlayPress();
-    void handleVideoStopPress();
-    void handleVideoVolumeDownPress();
-    void handleVideoVolumeUpPress();
+    void handleVideoVolume();
     void startVideo();
     void haltVideo();
+    void goVideoScreen();
     void goBackPreVideoScreen();
-
+    void refreshVideoDuration();
+    void refreshVideoPosition();
+    void resetVideo();
     /*****************************************************************************************************************************/
     /*************************************************    Bluetooth    **********************************************************/
     /***************************************************************************************************************************/
