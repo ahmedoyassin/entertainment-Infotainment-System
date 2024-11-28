@@ -54,7 +54,6 @@ OBJECTS_DIR   = ./
 
 SOURCES       = ../../main.cpp \
 		../../entertainmentscreen.cpp \
-		../../systeminterface.cpp \
 		../../mp3.cpp \
 		../../mp4.cpp \
 		../../calculator.cpp \
@@ -69,7 +68,6 @@ SOURCES       = ../../main.cpp \
 		moc_entertainmentscreen.cpp
 OBJECTS       = main.o \
 		entertainmentscreen.o \
-		systeminterface.o \
 		mp3.o \
 		mp4.o \
 		calculator.o \
@@ -439,11 +437,8 @@ DIST          = /home/yasso/Qt/6.7.2/gcc_64/mkspecs/features/spec_pre.prf \
 		/home/yasso/Qt/6.7.2/gcc_64/mkspecs/features/exceptions.prf \
 		/home/yasso/Qt/6.7.2/gcc_64/mkspecs/features/yacc.prf \
 		/home/yasso/Qt/6.7.2/gcc_64/mkspecs/features/lex.prf \
-		../../../../InfotainmentQt-draft2.pro ../../entertainmentscreen.hpp \
-		../../systeminterface.hpp \
-		../../targets.hpp ../../main.cpp \
+		../../../../InfotainmentQt-draft2.pro ../../entertainmentscreen.hpp ../../main.cpp \
 		../../entertainmentscreen.cpp \
-		../../systeminterface.cpp \
 		../../mp3.cpp \
 		../../mp4.cpp \
 		../../calculator.cpp \
@@ -1216,8 +1211,8 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../../backgrounds.qrc ../../home_page.qrc ../../mp3.qrc ../../mp4.qrc ../../bluetooth.qrc ../../carDiagnostics.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /home/yasso/Qt/6.7.2/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../../entertainmentscreen.hpp ../../systeminterface.hpp ../../targets.hpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../../main.cpp ../../entertainmentscreen.cpp ../../systeminterface.cpp ../../mp3.cpp ../../mp4.cpp ../../calculator.cpp ../../bluetooth.cpp ../../settings.cpp ../../carDiagnostics.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../../entertainmentscreen.hpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../../main.cpp ../../entertainmentscreen.cpp ../../mp3.cpp ../../mp4.cpp ../../calculator.cpp ../../bluetooth.cpp ../../settings.cpp ../../carDiagnostics.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../../entertainmentscreen.ui $(DISTDIR)/
 
 
@@ -2212,9 +2207,6 @@ entertainmentscreen.o: ../../entertainmentscreen.cpp ../../entertainmentscreen.h
 		../../systeminterface.hpp \
 		../../targets.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o entertainmentscreen.o ../../entertainmentscreen.cpp
-
-systeminterface.o: ../../systeminterface.cpp ../../systeminterface.hpp
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o systeminterface.o ../../systeminterface.cpp
 
 mp3.o: ../../mp3.cpp ../../entertainmentscreen.hpp \
 		/home/yasso/Qt/6.7.2/gcc_64/include/QtWidgets/QMainWindow \
