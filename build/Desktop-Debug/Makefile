@@ -1247,6 +1247,7 @@ qrc_backgrounds.cpp: ../../backgrounds.qrc \
 		../../media/darkmodebackground.jpeg \
 		../../media/background2.jpg \
 		../../media/darkBackground.png \
+		../../media/1024x600-black-solid-color-background.jpg \
 		../../media/lightBackground.jpg
 	/home/yasso/Qt/6.7.2/gcc_64/libexec/rcc -name backgrounds --no-zstd ../../backgrounds.qrc -o qrc_backgrounds.cpp
 
@@ -1264,7 +1265,6 @@ qrc_home_page.cpp: ../../home_page.qrc \
 		../../media/settings_icon.png \
 		../../media/bluetooth_icon.png \
 		../../media/startButton.png \
-		../../media/1024x600-black-solid-color-background.jpg \
 		../../media/darkThemeOff_icon.png
 	/home/yasso/Qt/6.7.2/gcc_64/libexec/rcc -name home_page --no-zstd ../../home_page.qrc -o qrc_home_page.cpp
 

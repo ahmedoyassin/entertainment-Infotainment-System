@@ -6,5 +6,7 @@
         <file>media/background2.jpg</file>
         <file>media/lightBackground.jpg</file>
         <file>media/darkmodebackground.jpeg</file>
+        <file>media/1024x600-black-solid-color-background.jpg</file>
+        
     </qresource>
 </RCC>

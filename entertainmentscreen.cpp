@@ -23,7 +23,7 @@ Entertainmentscreen::Entertainmentscreen(QWidget *parent)
     /****************************************************************************/
     /**************************** Background Setup *****************************/
     /**************************************************************************/
-    Entertainmentscreen::setStyleSheet("background:url(:/home_page/media/1024x600-black-solid-color-background.jpg)");
+    Entertainmentscreen::setStyleSheet("background:url(:/mainBG/media/1024x600-black-solid-color-background.jpg)");
     ui->darkLightMode->setIcon(QIcon(":/home_page/media/darkThemeOn_icon.png"));
     ui->darkLightMode->setIconSize(QSize(50,20));
 
@@ -43,7 +43,6 @@ Entertainmentscreen::Entertainmentscreen(QWidget *parent)
     /*************************************************************************/
     ui->mp3Button->setIcon(QIcon(":/home_page/media/music_icon.png"));
     ui->mp3Button->setIconSize(QSize(100,100));
-
     ui->mp4Button->setIcon(QIcon(":/home_page/media/video_icon.png"));
     ui->mp4Button->setIconSize(QSize(100,100));
     ui->bluetoothButton->setIcon(QIcon(":/home_page/media/bluetooth_icon.png"));
@@ -148,16 +147,24 @@ Entertainmentscreen::Entertainmentscreen(QWidget *parent)
     /*************************************************************************/
     ui->carDiagnosticsButton->setIcon(QIcon(":/home_page/media/carDiagnostics.png"));
     ui->carDiagnosticsButton->setIconSize(QSize(100,100));
-    connect(ui->carDiagnosticsButton, SIGNAL(clicked(bool)), SLOT(showCarScreen()));
+    ui->label_3->setStyleSheet("background-image: url(:/carDiagnostics/media/padlock-unlock.png)");
     ui->backTierIssue->hide();
+
+    connect(ui->carDiagnosticsButton, SIGNAL(clicked(bool)), SLOT(showCarScreen()));
     connect(ui->checkBox, SIGNAL(clicked(bool)), SLOT(showTireDiagnostics()));
     connect(ui->lockChecker, SIGNAL(clicked(bool)), SLOT(lockCar()));
     connect(ui->homeButtonDiagnostics, SIGNAL(clicked(bool)), SLOT(navigateToHome()));
-    ui->label_3->setStyleSheet("background-image: url(:/carDiagnostics/media/padlock-unlock.png)");
 
     /***************************************************************************/
     /************************* Settings Pages Buttons ****************************/
     /*************************************************************************/
+    ui->homeButtonSettings->setIcon(QIcon(":/home_page/media/home_icon.png"));
+    ui->homeButtonSettings->setIconSize(QSize(100,50));
+    ui->darkLightMode_2->setIcon(QIcon(":/home_page/media/darkThemeOn_icon.png"));
+    ui->darkLightMode_2->setIconSize(QSize(50,20));
+    ui->settingsIcon->setIcon(QIcon(":/home_page/media/settings_icon.png"));
+    ui->settingsIcon->setIconSize(QSize(80,40));
+
     connect(ui->settingsButton, SIGNAL(clicked(bool)), SLOT(handleSettingsButtonPress()));
     connect(ui->darkLightMode_2,SIGNAL(clicked(bool)),SLOT(toggleDarkTheme()));
     connect(ui->homeButtonSettings, SIGNAL(clicked(bool)), SLOT(navigateToHome()));
@@ -226,7 +233,7 @@ void Entertainmentscreen:: toggleDarkTheme(){
     }
     else{
         darkThemeFlag = darkMode;
-        Entertainmentscreen::setStyleSheet("background:url(:/home_page/media/1024x600-black-solid-color-background.jpg)");
+        Entertainmentscreen::setStyleSheet("background:url(:/mainBG/media/1024x600-black-solid-color-background.jpg)");
         ui->darkLightMode->setIcon(QIcon(":/home_page/media/darkThemeOn_icon.png"));
         ui->darkLightMode_2->setIcon(QIcon(":/home_page/media/darkThemeOn_icon.png"));
     }
