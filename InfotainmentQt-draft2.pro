@@ -20,7 +20,6 @@ CONFIG += c++14
 SOURCES += \
     main.cpp \
     entertainmentscreen.cpp \
-    systeminterface.cpp \
     mp3.cpp \
     mp4.cpp \
     calculator.cpp \
@@ -29,9 +28,7 @@ SOURCES += \
     carDiagnostics.cpp
 
 HEADERS += \
-    entertainmentscreen.hpp \
-    systeminterface.hpp \
-    targets.hpp
+    entertainmentscreen.hpp
 
 FORMS += \
     entertainmentscreen.ui
